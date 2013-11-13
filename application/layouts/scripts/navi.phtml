@@ -1,0 +1,45 @@
+<?php
+$acl = Zend_Registry::get("acl");
+
+$html[] = "<ul class='nav navbar-nav'>";
+
+foreach ($this->container as $page) 
+{
+	if(!$this->navigation()->accept($page)) {
+		continue;
+	}
+	$active = $page->active ? "active" : "";
+	if($page->pages) {
+		$page->setClass("dropdown-toggle");
+		$html[] = "<li class='dropdown'>";
+	} else {
+    	$html[] = "<li class='$active'>";
+	}
+	if($page->getController()) {
+    	$html[] = $this->menu()->htmlify($page) . PHP_EOL;
+	} else {
+		$html[] = sprintf("<a class='dropdown-toggle' data-toggle='dropdown' href='#'>%s<b class='caret'></b></a>", $this->translate($page->getLabel()));
+	}
+    
+    if (!empty($page->pages) && $this->navigation()->accept($page))
+    {
+        $html[] = "<ul class='dropdown-menu'>";
+        foreach ($page->pages as $subpage)
+        {
+	        $active = "";
+			if($subpage->active) {
+				$active = "active";
+			}
+	        if(!$this->navigation()->accept($subpage)) {
+				continue;
+			}
+        	$html[] = "<li>";
+        	$html[] = $this->menu()->htmlify($subpage) . PHP_EOL;
+        	$html[] = "</li>";
+        }
+        $html[] = "</ul>";
+    }
+    $html[] = "</li>";
+}
+$html[] = "</ul>";
+echo join(PHP_EOL, $html);

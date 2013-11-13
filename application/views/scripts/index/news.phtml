@@ -1,0 +1,75 @@
+<div class="row">
+	<div class="col-lg-9 ">
+	<?php 
+	foreach($this->news as $news)
+	{
+		?>
+		<div class="row">
+			<div class="col-lg-12">
+				<article class="thisbox">
+					<h4 class="box-title"><?php echo $news['title'];?></h4>
+					<div class="box-content">
+						<div class="row">
+							<div class="col-lg-12" id="links">
+								<?php 
+								foreach($news['pictures'] as $pic)
+								{
+									?>
+									<p class="col-lg-4">
+									<a href="<?php echo $pic;?>" class="fancybox-thumb" rel="news1" >
+										<img class="img-thumbnail " alt=""
+										src="<?php echo $pic;?>">
+									</a>
+								</p>
+									<?php 
+								}
+								?>
+							</div>
+						</div>
+					</div>
+					<footer>
+		 				<span class="glyphicon glyphicon-comment" data-toggle="collapse" data-target="#comments"> 0 Kommentare</span> 
+						<div class="row collapse" id="comments">
+							<ul class="list-unstyled">
+								<li class="">
+									<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+									<p>Hier ein Kommentar</p>
+								</li>
+								<li class="">
+									<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+									<p>Hier ein Kommentar</p>
+								</li>
+								<li>
+									<ul class="list-unstyled2">
+										<li class="">
+											<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+											<p>Hier ein Kommentar</p>
+										</li>
+										<li class="">
+											<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+											<p>Hier ein Kommentar</p>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</footer>
+				</article>
+			</div>
+		</div>
+
+		<?php 	
+	}
+	echo $this->paginationControl($this->news,
+			'Sliding',
+	    'my_default_pager.phtml');
+	?>
+
+	</div>
+	<div class="col-md-3 visible-lg">
+		<article class="thisbox">
+			<h4 class="box-title">Profil</h4>
+			<p>foo</p>
+		</article>
+	</div>
+</div>

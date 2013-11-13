@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+	<nav>
+		<news>
+			<label>News</label>
+			<controller>index</controller>
+			<action>news</action>
+			<resource>index</resource>
+			<privilege>news</privilege>
+		</news>
+		<gallery>
+			<label>Gallery</label>
+			<controller>index</controller>
+			<action>gallery</action>
+			<resource>index</resource>
+			<privilege>news</privilege>
+		</gallery>
+		<kontakt>
+			<label>Kontakt</label>
+			<controller>index</controller>
+			<action>kontakt</action>
+			<resource>index</resource>
+			<privilege>kontakt</privilege>
+		</kontakt>
+	</nav>
+</configdata>

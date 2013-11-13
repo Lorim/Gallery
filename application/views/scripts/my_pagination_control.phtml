@@ -1,0 +1,41 @@
+<?php 
+if ($this->pageCount)
+{ 
+?>
+
+	<ul class="pagination">
+	<?php 
+	if($this->current != $this->first) {
+		printf("<li class='prev'><a href='%s'>← %s</a></li>",$this->url(array('page' => $this->first), 'default', false), "First");
+	} else {
+		printf("<li class='prev disabled'><a href='%s'>← %s</a></li>",$this->url(array('page' => $this->first), 'default', false), "First");
+	}
+	if(isset($this->previous)) {
+		printf("<li class='prev'><a href='%s'>← Previous</a></li>",$this->url(array('page' => $this->previous), 'default', false));
+	} else {
+		printf("<li class='prev disabled'><a>← Previous</a></li>");
+	}
+	
+	foreach($this->pagesInRange as $page) {
+		if($this->current == $page)
+		{
+			printf("<li class='active'><a href='%s'>%s</a></li>",$this->url(array('page' => $page), 'default', false), Zend_Locale_Format::toNumber($page));
+		} else {
+			printf("<li class='prev'><a href='%s'>%s</a></li>",$this->url(array('page' => $page), 'default', false), Zend_Locale_Format::toNumber($page));
+		}
+	}
+	
+	if(isset($this->next)) {
+		printf("<li class='prev'><a href='%s'>Next →</a></li>",$this->url(array('page' => $this->next), 'default', false));
+	} else {
+		printf("<li class='prev disabled'><a>Next →</a></li>");
+	}
+	if($this->current != $this->last) {
+		printf("<li class='prev'><a href='%s'>%s →</a></li>",$this->url(array('page' => $this->last), 'default', false), "Last");
+	}else{
+		printf("<li class='prev disabled'><a href='%s'>%s →</a></li>",$this->url(array('page' => $this->last), 'default', false), "Last");
+	}
+	?>
+	</ul>
+<?php 
+}
