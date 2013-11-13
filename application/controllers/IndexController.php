@@ -10,14 +10,15 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $db = Zend_Registry::get('db');
-        var_dump( $db->fetchAll("SELECT VERSION();") );
+        #$db = Zend_Registry::get('db');
+        #var_dump( $db->fetchAll("SELECT VERSION();") );
+	$this->_forward('news');
     }
 
 	public function newsAction()
 	{
 
-		$oNews = new Application_Model_News($oConfig);
+		$oNews = new Application_Model_News();
 		
 		$paginator = Zend_Paginator::factory($oNews->getNews($this->_request->getParam('date')));
 		$paginator->setCurrentPageNumber($this->_getParam('page'));
