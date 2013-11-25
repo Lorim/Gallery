@@ -1,0 +1,25 @@
+
+<form name="comment" class="form-horizontal" role="form" id="<?php print $this->escape($this->form->getName()) ?>" action="<?php print $this->escape($this->form->getAction()) ?>#comment" method="<?php print $this->escape($this->form->getMethod()) ?>">
+  
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-4 <?php echo $this->form->getElement('name')->hasErrors() ? "has-error": "";?>">
+		<input type="text" class="form-control" id="name" name="name" placeholder="Max Mustermann" value="<?php echo $this->form->getElement('name')->getValue()?>">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="comment" class="col-sm-2 control-label">Kommentar</label>
+    <div class="col-sm-4 <?php echo $this->form->getElement('comment')->hasErrors() ? "has-error": "";?>" data-toggle="tooltip" title="first tooltip" data-placement="top">
+      <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Hier kannst du dich auslassen"><?php echo $this->form->getElement('comment')->getValue()?></textarea>
+    </div>
+  </div>
+  <input type="hidden" name="newsdate" value="<?php echo $this->form->getValue('newsdate');?>" />
+  <div class="form-group">
+    <label for="" class="col-sm-2 control-label"></label>
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-success">Absenden</button>
+    </div>
+  </div>
+  
+</form>
+

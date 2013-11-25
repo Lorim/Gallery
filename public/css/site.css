@@ -51,14 +51,26 @@ h2.box-title, h3.box-title, h4.box-title, .box-title {
     background: linear-gradient(top, #fcfcfc -5%, #e1e1e1 90%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f2f2', endColorstr='#e1e1e1',GradientType=0 ); /* IE6-9 */
 }
-
+h4.box-title span.pull-right {
+	padding-right: 35px;
+}
 .thisbox footer {
 	border-top: 2px solid #f5f5f5;
 	padding: 3px 30px 0;
 }
 
+.thisbox footer.disabled {
+	background-color: #fdf7f7;
+}
+.thisbox footer.enabled {
+	background-color: #fdf7f7;
+}
 .thisbox footer span{
 	cursor: pointer;
+}
+
+li.thisbox {
+	margin-bottom: 30px;
 }
 .list-unstyled  ul {
 	list-style-type: none;

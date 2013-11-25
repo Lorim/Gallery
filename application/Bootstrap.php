@@ -17,14 +17,28 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	}
 	protected function _initNavigation ()
 	{
-		 
+		
 		$helper= new Application_Controller_Helper_Acl();
 	
 		$this->bootstrap('frontController');
 		$frontController = $this->getResource('frontController');
 		$frontController->registerPlugin(new Application_Controller_Plugin_Acl());
 	
-	
+		/**
+		 * add custom loginroute
+		 */
+		
+		$router = $frontController->getRouter();
+		$router->addRoute(
+				'loginroute',
+				new Zend_Controller_Router_Route(
+						'login', array(
+								'controller' => 'index',
+								'action' => 'login'
+								)
+						)
+				);
+		
 		$this->bootstrap('view');
 		$view = $this->getResource('view');
 		$config = new Zend_Config_Xml( APPLICATION_PATH . '/configs/navigation.xml', 'nav' );
@@ -35,13 +49,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		*/
 		$acl = Zend_Registry::get("acl");
 		$auth = Zend_Auth::getInstance();
+
 		if ($auth->hasIdentity())
 		{
 			$navigation->addPage(
 					new Zend_Config(
 							array(
-									'label' => 'nav_logout',
-									'controller' => 'user',
+									'label' => 'Logout',
+									'controller' => 'index',
 									'action' => 'logout',
 							)
 					)
@@ -63,6 +78,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	
 	protected function _initDB ()
 	{
+		
 		$dbOptions = $this->getOption('db');
 	
 		$db = Zend_Db::factory(
@@ -76,8 +92,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	
 		Zend_Registry::set('db', $db);
 		Zend_Db_Table_Abstract::setDefaultAdapter( $db );
-	
-	
+		
 	}
 	
 	protected function _initBase()
