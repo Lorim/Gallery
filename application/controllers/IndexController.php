@@ -112,5 +112,11 @@ class IndexController extends Zend_Controller_Action
 				)
 			);
 	}
+	
+	public function kontaktAction()
+	{
+		$form = new Application_Form_Kontakt();
+		$this->view->form = $form;
+	}
 }
 
