@@ -1,0 +1,66 @@
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr>
+			<th>Newsdate</th>
+			<th>Created</th>
+			<th>Name</th>
+			<th>Kommentar</th>
+			<th>Admin</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach($this->entries as $entry) {
+	$classenable = "";
+	$classdisable = "";
+	$enableNews = $this->url(array(
+		'controller' => 'index',
+		'action' => 'editnews',
+		'c' => 'enable',
+		'comment' => $entry->id
+	));
+	$disableNews = $this->url(array(
+		'controller' => 'index',
+		'action' => 'editnews',
+		'c' => 'disable',
+		'comment' => $entry->id
+	));
+	$deleteNews = $this->url(array(
+		'controller' => 'index',
+		'action' => 'editnews',
+		'c' => 'delete',
+		'comment' => $entry->id
+	));
+	if($entry->active == 1) {
+		echo "<tr class='success'>";
+		$classenable = "disabled";
+	} else {
+		echo "<tr class='danger'>";
+		$classdisable = "disabled";
+	}
+	printf("<td>%s</td>",$entry->newsdate);
+	printf("<td>%s</td>",$entry->created);
+	printf("<td>%s</td>",$entry->name);
+	printf("<td>%s</td>",$entry->comment);
+	?>
+	<td>
+		<!-- Single button -->
+		<div class="btn-group">
+		  <button type="button" class="btn btn-default dropdown-toggle btn-xs" data-toggle="dropdown">
+		    Administration <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu" role="menu">
+		    <li class="<?php echo $classenable?>"><a href="<?php echo $enableNews;?>">Beitrag freigaben</a></li>
+		    <li class="<?php echo $classdisable?>"><a href="<?php echo $disableNews;?>">Beitrag sperren</a></li>
+		    <li class="divider"></li>
+		    <li><a href="<?php echo $deleteNews;?>">Beitrag löschen</a></li>
+		  </ul>
+		</div>
+	</td>
+	<?php
+	echo "</tr>";
+}
+?>	
+	</tbody>
+</table>
+

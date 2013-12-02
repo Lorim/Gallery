@@ -10,9 +10,10 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-
+		/*
     	$guestbook = new Application_Model_GuestbookMapper();
     	$this->view->entries = $guestbook->fetchAll();
+		 */
 
     }
 	
@@ -51,8 +52,7 @@ class IndexController extends Zend_Controller_Action
     	$auth = Zend_Auth::getInstance();
     	$auth->clearIdentity();
     	
-    	Zend_Debug::dump($this->getRequest()->getServer('HTTP_REFERER'));
-    	//$this->_helper->redirector('login');
+    	$this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
     }
     
 	public function newsAction()
@@ -102,6 +102,9 @@ class IndexController extends Zend_Controller_Action
 				$gb->delete($comment);
 			break;
 		}
+		
+		$this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
+		
 		$this->_helper->redirector->gotoRoute(
 				array(
 					'controller' => 'index',

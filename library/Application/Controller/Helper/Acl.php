@@ -23,7 +23,7 @@ class Application_Controller_Helper_Acl
     		->add(new Zend_Acl_Resource("index"))
     		->add(new Zend_Acl_Resource("user"))
     		->add(new Zend_Acl_Resource("error"))
-        	->add(new Zend_Acl_Resource("administration"));
+        	->add(new Zend_Acl_Resource("admin"));
     }
     private function setPrivileges ()
     {

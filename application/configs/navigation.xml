@@ -22,5 +22,20 @@
 			<resource>index</resource>
 			<privilege>kontakt</privilege>
 		</kontakt>
+		<admin>
+			<label>Administration</label>
+			<controller></controller>
+			<resource>admin</resource>
+			<privilege>index</privilege>
+			<pages>
+				<user>
+					<label>Kommentare</label>
+					<controller>admin</controller>
+					<action>comments</action>
+					<resource>admin</resource>
+					<privilege>comments</privilege>
+				</user>
+			</pages>
+		</admin>
 	</nav>
 </configdata>
