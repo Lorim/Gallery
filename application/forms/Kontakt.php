@@ -33,19 +33,19 @@ public function init()
         ));
 
         
- 		
+ 		/*
         // Ein Captcha hinzufügen
         $this->addElement('captcha', 'captcha', array(
             'label'      => "Bitte die 4 Buchstaben eingeben die unterhalb "
                           . "angezeigt werden:",
-            'required'   => true,
+            'required'   => false,
             'captcha'    => array(
                 'captcha' => 'Figlet',
                 'wordLen' => 4,
                 'timeout' => 300
             )
         ));
- 		
+ 		*/
         // Den Submit Button hinzufügen
         $this->addElement('submit', 'submit', array(
             'ignore'   => true,

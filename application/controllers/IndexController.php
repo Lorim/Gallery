@@ -116,6 +116,33 @@ class IndexController extends Zend_Controller_Action
 	public function kontaktAction()
 	{
 		$form = new Application_Form_Kontakt();
+		
+		$request = $this->getRequest();
+		
+		if ($request->isPost()) {
+			if ($form->isValid($request->getParams())) {
+				Zend_Debug::dump($form);
+				//$form->reset();
+				$view = new Zend_View();
+	        	$view->setScriptPath(APPLICATION_PATH . "/views/mail");
+				$view->message = 'Application error';
+				$view->request   = $request;
+				$view->user = Zend_Auth::getInstance()->getIdentity();
+				$view->exception = $request;
+				
+				
+				$html = $view->render('kontakt.phtml');
+	
+	        	$mail = new Zend_Mail('UTF-8');
+		    	$mail->setFrom("gallery@se519.de")
+					 ->addTo("admin@lonie.de")
+					 ->setSubject('Neue Kontaktanfrage');
+				$mail->setBodyHtml($html);
+				$mail->send();
+			}
+			$this->view->commentsubmit = true;
+		}
+		
 		$this->view->form = $form;
 	}
 }
