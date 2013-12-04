@@ -5,18 +5,9 @@
   <title>Erdis Gallery</title>
 </head>
 <body>
-  <h1>Du hast eine neue Kontaktanfrage</h1>
-  <h2><?php echo $this->message ?></h2>
+  <h2>Du hast eine neue Kontaktanfrage von <?php echo $this->form['name'] ?></h2>
 
  <?php Zend_Debug::dump($this); ?>
 
-  <h3>Request Parameters:</h3>
-  <pre><?php echo var_export($this->request->getParams(), true) ?>
-  </pre>
-
-  <h3>User data:</h3>
-  <pre><?php echo var_export($this->user, true) ?>
-  </pre>
-  
 </body>
 </html>
