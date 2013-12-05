@@ -7,44 +7,6 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        
-    }
-
-    public function loginAction() {
-        $form = new Application_Form_Login();
-        $request = $this->getRequest();
-        if ($this->getRequest()->isPost()) {
-            if ($form->isValid($request->getPost())) {
-                $auth = Zend_Auth::getInstance();
-
-                $result = $auth->authenticate(new Application_Auth_Adapter($form->getValue('name'), $form->getValue('password')));
-                switch ($result->getCode()) {
-                    case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
-                        echo 'user name is unvalid';
-                        break;
-                    case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
-                        echo 'unvalid password provided';
-                        break;
-                    default:
-                        $this->_helper->redirector('news', 'index', 'default');
-                        break;
-                }
-            }
-        }
-
-        $this->view->form = $form;
-    }
-
-    public function logoutAction() {
-        $auth = Zend_Auth::getInstance();
-        $auth->clearIdentity();
-
-        $this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
-    }
-
-    public function newsAction() {
-
-
         $oNews = new Application_Model_News();
 
         $paginator = Zend_Paginator::factory($oNews->getNews($this->_request->getParam('date')));
@@ -67,6 +29,38 @@ class IndexController extends Zend_Controller_Action {
         $guestbook = new Application_Model_GuestbookMapper();
         $this->view->comments = $guestbook;
         $this->view->form = $form;
+    }
+
+    public function loginAction() {
+        $form = new Application_Form_Login();
+        $request = $this->getRequest();
+        if ($this->getRequest()->isPost()) {
+            if ($form->isValid($request->getPost())) {
+                $auth = Zend_Auth::getInstance();
+
+                $result = $auth->authenticate(new Application_Auth_Adapter($form->getValue('name'), $form->getValue('password')));
+                switch ($result->getCode()) {
+                    case Zend_Auth_Result::FAILURE_IDENTITY_NOT_FOUND:
+                        echo 'user name is unvalid';
+                        break;
+                    case Zend_Auth_Result::FAILURE_CREDENTIAL_INVALID:
+                        echo 'unvalid password provided';
+                        break;
+                    default:
+                        $this->_helper->redirector('index', 'index', 'default');
+                        break;
+                }
+            }
+        }
+
+        $this->view->form = $form;
+    }
+
+    public function logoutAction() {
+        $auth = Zend_Auth::getInstance();
+        $auth->clearIdentity();
+
+        $this->_helper->redirector->gotoUrl($this->getRequest()->getServer('HTTP_REFERER'));
     }
 
     public function editnewsAction() {
@@ -93,7 +87,7 @@ class IndexController extends Zend_Controller_Action {
         $this->_helper->redirector->gotoRoute(
                 array(
                     'controller' => 'index',
-                    'action' => 'news'
+                    'action' => 'index'
                 )
         );
     }

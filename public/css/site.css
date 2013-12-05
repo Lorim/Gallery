@@ -29,23 +29,6 @@ body {
     padding: 0 16px;
 }
 
-
-.thisbox .boxtitle {
-    font-family:itckabel-demi;
-    font-weight:normal;
-    -webkit-border-radius: 2px 2px 0 0;
-    -moz-border-radius: 2px 2px 0 0;
-    border-radius: 2px 2px 0 0;
-    padding-left:7px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 7px;
-    border-bottom: 1px solid white;
-    text-shadow: 0 1px 0 white;
-    background: #fcfcfc; /* Old browsers */
-    
-}
-
 .thisbox footer {
 	border-top: 2px solid #f5f5f5;
 	padding: 3px 30px 0;
@@ -88,7 +71,7 @@ li.thisbox {
     color: #333333;
 }
 .box,.thisbox .head span{
-    color: #777777;
+    color: #333333;
 }
 .box .body {
     

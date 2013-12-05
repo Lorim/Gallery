@@ -4,7 +4,7 @@
 		<news>
 			<label>News</label>
 			<controller>index</controller>
-			<action>news</action>
+			<action>index</action>
 			<resource>index</resource>
 			<privilege>news</privilege>
 		</news>
