@@ -18,7 +18,9 @@ body {
     box-shadow: 0px 2px 6px -1px rgb(148, 148, 148);
     margin-bottom: 15px;
 }
-
+.thisbox .body {
+    padding: 10px 0 0;
+}
 .thisbox .box-content {
     padding:0 16px;
 }
@@ -55,7 +57,7 @@ body {
 .thisbox footer.enabled {
 	background-color: #fdf7f7;
 }
-.thisbox footer span{
+.thisbox footer span.pointer{
 	cursor: pointer;
 }
 
@@ -82,9 +84,13 @@ li.thisbox {
 
 .box,.thisbox .head {
     padding: 5px 10px;
-    background-color: #EDEDED;
+    background-color: #f2f2f2;
+    color: #333333;
+}
+.box,.thisbox .head span{
+    color: #777777;
 }
 .box .body {
-    padding: 5px;
+    
     border-top: 1px solid #EDEDED;
 }
