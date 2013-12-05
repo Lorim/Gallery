@@ -7,10 +7,28 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        /*
-          $guestbook = new Application_Model_GuestbookMapper();
-          $this->view->entries = $guestbook->fetchAll();
-         */
+        $oNews = new Application_Model_News();
+
+        $paginator = Zend_Paginator::factory($oNews->getNews($this->_request->getParam('date')));
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        $paginator->setItemCountPerPage(1);
+        $this->view->news = $paginator;
+        $form = new Application_Form_Guestbook();
+        $form->getElement('active')->setValue(0);
+        $request = $this->getRequest();
+
+        if ($request->isPost()) {
+            if ($form->isValid($request->getParams())) {
+                $comment = new Application_Model_Guestbook($form->getValues());
+                $mapper = new Application_Model_GuestbookMapper();
+                $mapper->save($comment);
+                $form->reset();
+            }
+            $this->view->commentsubmit = true;
+        }
+        $guestbook = new Application_Model_GuestbookMapper();
+        $this->view->comments = $guestbook;
+        $this->view->form = $form;
     }
 
     public function loginAction() {
