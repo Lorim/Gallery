@@ -94,6 +94,7 @@ class Application_Model_News
     	$this->_path = (string) $path;
 
         $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
+        $aPictures = array();
         foreach($aList as $sPicture) {
             $aPictures[] = "/images/" . $path . "/" . basename($sPicture);
         }
@@ -109,5 +110,11 @@ class Application_Model_News
     public function getPictures()
     {
         return (array)$this->_pictures;
+    }
+    
+    static public function getPaths()
+    {
+        $sBasepath = APPLICATION_PATH . '/../public/images/*';
+        return glob($sBasepath, GLOB_ONLYDIR);
     }
 }

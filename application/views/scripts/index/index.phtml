@@ -28,10 +28,13 @@
                             </div>
                         </div>
                         <?php
-                        
-                        $comments = $this->comments->findComments($news->id);
-                        $this->form->setAction($this->url());
-                        $this->form->getElement('newsid')->setValue($news->id);
+                        try{
+                            $comments = $this->comments->findComments($news->id);
+                            $this->form->setAction($this->url());
+                            $this->form->getElement('newsid')->setValue($news->id);
+                        } catch (Exception $e) {
+                            Zend_Debug::dump($e->getMessage());
+                        }
                         ?>
                         <footer>
                             <span class="pointer glyphicon glyphicon-comment" data-toggle="collapse" data-target="#comments"> 

@@ -16,7 +16,7 @@ class IndexController extends Zend_Controller_Action {
         $form = new Application_Form_Guestbook();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();
-
+           
         if ($request->isPost()) {
             if ($form->isValid($request->getParams())) {
                 $comment = new Application_Model_Guestbook($form->getValues());
@@ -26,9 +26,11 @@ class IndexController extends Zend_Controller_Action {
             }
             $this->view->commentsubmit = true;
         }
+        
         $guestbook = new Application_Model_GuestbookMapper();
         $this->view->comments = $guestbook;
         $this->view->form = $form;
+        
     }
 
     public function loginAction() {

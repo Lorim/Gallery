@@ -35,5 +35,35 @@ class AdminController extends Zend_Controller_Action
         $oNews->save($oNewsentry);
         
     }
+    
+    public function addnewsAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        try{
+            $oNews = new Application_Model_NewsMapper();
+            $oEntry = new Application_Model_News();
+            $oEntry->setTitle($this->_request->getParam('title'));
+            $oEntry->setTeaser($this->_request->getParam('teaser'));
+            $oEntry->setCreated($this->_request->getParam('created'));
+            $oEntry->setPath($this->_request->getParam('path'));
+            
+            $oNews->save($oEntry);
+        }  catch (Exception $e) {
+            Zend_Debug::dump($e);
+        }
+    }
+    
+    public function getpathsAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        $aPaths = Application_Model_News::getPaths();
+        $aReturn = array();
+        foreach($aPaths as $sPath) {
+            $sPath = basename($sPath);
+            $aReturn[] = array($sPath => $sPath);
+        }
+        
+        echo json_encode($aReturn);
+    }
 }
 

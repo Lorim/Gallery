@@ -103,25 +103,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 	
 		$view->baseUrl = $view->baseUrl();
 		$css = array(
-				'/css/bootstrap.css',
-				'/css/blueimp-gallery.css',
-				'/css/bootstrap-image-gallery.css',
-                                '/css/datatables.css',
-                                '/css/bootstrap-editable.css',
-				'/css/site.css',
+                    '/css/bootstrap.css',
+                    '/css/blueimp-gallery.css',
+                    '/css/bootstrap-image-gallery.css',
+                    '/css/datatables.css',
+                    '/css/bootstrap-editable.css',
+                    '/css/site.css',
 
 		);
 		foreach ($css as $file) {
 			$view->headLink()->appendStylesheet( $view->baseUrl() . $file);
 		}
 		$js = array(
-				'/js/jquery-2.0.3.js',
-				'/js/bootstrap.js',
-				'/js/jquery.blueimp-gallery.min.js',
-                                '//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js',
-                                '/js/datatables.js',
-                                '/js/bootstrap-editable.js',
-				'/js/site.js',
+                    '/js/jquery-2.0.3.js',
+                    '/js/bootstrap.js',
+                    '/js/jquery.blueimp-gallery.min.js',
+                    '//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js',
+                    '/js/datatables.js',
+                    '/js/bootstrap-editable.js',
+                    '/js/bootstrap-datepicker.de.js',
+                    '/js/site.js',
 				
 		);
 		foreach ($js as $file) {

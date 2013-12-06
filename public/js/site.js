@@ -16,18 +16,52 @@ $(document).ready(function() {
         length_sel.addClass('form-control input-sm');
     });
     
-    $('.editable.text').editable({
-        type: 'text',
+    $('.editable').editable({
+        type: $(this).data("type"),
         url: '/admin/updatenews',
-        placement: 'top',
+        placement: 'auto',
+        datepicker: {
+            language : 'de'
+        },
         source: '/list'
     });
-    $('.editable.textarea').editable({
-        type: 'textarea',
-        url: '/admin/updatenews',
-        placement: 'top',
-        source: '/list'
+    
+    $('#save-btn').click(function() {
+        $('.new').editable('submit', {
+            url: '/admin/addnews',
+            ajaxOptions: {
+                dataType: 'json' //assuming json response
+            },
+            success: function(data, config) {
+                if (data && data.id) {  //record created, response like {"id": 2}
+                    //set pk
+                    $(this).editable('option', 'pk', data.id);
+                    //remove unsaved class
+                    $(this).removeClass('editable-unsaved');
+                    //show messages
+                    var msg = 'New user created! Now editables submit individually.';
+                    $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
+                    $('#save-btn').hide();
+                    $(this).off('save.newuser');
+                } else if (data && data.errors) {
+                    //server-side validation error, response like {"errors": {"username": "username already exist"} }
+                    config.error.call(this, data.errors);
+                }
+            },
+            error: function(errors) {
+                var msg = '';
+                if (errors && errors.responseText) { //ajax error, errors = xhr object
+                    msg = errors.responseText;
+                } else { //validation error (client-side or server-side)
+                    $.each(errors, function(k, v) {
+                        msg += k + ": " + v + "<br>";
+                    });
+                }
+                $('#msg').removeClass('alert-success').addClass('alert-error').html(msg).show();
+            }
+        });
     });
+    
     $('#links').click(function(event) {
         event = event || window.event;
         var target = event.target || event.srcElement,
