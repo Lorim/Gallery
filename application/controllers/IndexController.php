@@ -11,7 +11,7 @@ class IndexController extends Zend_Controller_Action {
 
         $paginator = Zend_Paginator::factory($oNews->getNews($this->_request->getParam('date')));
         $paginator->setCurrentPageNumber($this->_getParam('page'));
-        $paginator->setItemCountPerPage(1);
+        $paginator->setItemCountPerPage(2);
         $this->view->news = $paginator;
         $form = new Application_Form_Guestbook();
         $form->getElement('active')->setValue(0);

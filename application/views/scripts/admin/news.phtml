@@ -1,0 +1,23 @@
+<table class="datatable table table-striped table-bordered">
+	<thead>
+		<tr>
+			<th>Datum</th>
+			<th>Titel</th>
+			<th>Pfad</th>
+			<th>Teaser</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+$aNews = $this->oNews->getNews();
+foreach($aNews['data'] as $key => $entry) {
+    echo "<tr>";
+    printf("<td>%s</td>",$entry['date']);
+    printf("<td>%s</td>",$entry['title']);
+    printf("<td>%s</td>",$entry['path']);
+    printf("<td>%s</td>",$entry['teaser']);
+    echo "</tr>";
+}
+?>
+        </tbody>
+</table>

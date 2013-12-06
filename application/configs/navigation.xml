@@ -28,13 +28,20 @@
 			<resource>admin</resource>
 			<privilege>index</privilege>
 			<pages>
-				<user>
+				<comment>
 					<label>Kommentare</label>
 					<controller>admin</controller>
 					<action>comments</action>
 					<resource>admin</resource>
 					<privilege>comments</privilege>
-				</user>
+				</comment>
+                                <news>
+					<label>News</label>
+					<controller>admin</controller>
+					<action>news</action>
+					<resource>admin</resource>
+					<privilege>news</privilege>
+				</news>
 			</pages>
 		</admin>
 	</nav>

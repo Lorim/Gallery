@@ -106,6 +106,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'/css/bootstrap.css',
 				'/css/blueimp-gallery.css',
 				'/css/bootstrap-image-gallery.css',
+                                '/css/datatables.css',
+                                '////cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css',
 				'/css/site.css',
 
 		);
@@ -116,6 +118,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'/js/jquery-2.0.3.js',
 				'/js/bootstrap.js',
 				'/js/jquery.blueimp-gallery.min.js',
+                                '//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js',
+                                '/js/datatables.js',
+                                '////cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js',
 				'/js/site.js',
 				
 		);

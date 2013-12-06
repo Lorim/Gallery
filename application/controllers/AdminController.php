@@ -15,6 +15,12 @@ class AdminController extends Zend_Controller_Action
     	$this->view->entries = $guestbook->fetchAll();
 
     }
-	
+    
+    public function newsAction()
+    {
+        $oNews = new Application_Model_News();
+        $this->view->entries = $oNews->fetchAll();        
+    }
+
 }
 
