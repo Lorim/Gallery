@@ -107,12 +107,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'/css/blueimp-gallery.css',
 				'/css/bootstrap-image-gallery.css',
                                 '/css/datatables.css',
-                                '////cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/css/bootstrap-editable.css',
+                                '/css/bootstrap-editable.css',
 				'/css/site.css',
 
 		);
 		foreach ($css as $file) {
-			$view->headLink()->prependStylesheet( $view->baseUrl() . $file);
+			$view->headLink()->appendStylesheet( $view->baseUrl() . $file);
 		}
 		$js = array(
 				'/js/jquery-2.0.3.js',
@@ -120,7 +120,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 				'/js/jquery.blueimp-gallery.min.js',
                                 '//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js',
                                 '/js/datatables.js',
-                                '////cdnjs.cloudflare.com/ajax/libs/x-editable/1.4.6/bootstrap-editable/js/bootstrap-editable.min.js',
+                                '/js/bootstrap-editable.js',
 				'/js/site.js',
 				
 		);
@@ -128,5 +128,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			$view->headScript()->appendFile( $view->baseUrl() . $file );
 		}
 	}
+
 }
 

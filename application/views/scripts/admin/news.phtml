@@ -1,3 +1,5 @@
+<a href="#" id="status" data-value="2">admin</a>
+
 <table class="datatable table table-striped table-bordered">
 	<thead>
 		<tr>
@@ -9,13 +11,13 @@
 	</thead>
 	<tbody>
 <?php
-$aNews = $this->oNews->getNews();
-foreach($aNews['data'] as $key => $entry) {
+
+foreach($this->entries as $entry) {
     echo "<tr>";
-    printf("<td>%s</td>",$entry['date']);
-    printf("<td>%s</td>",$entry['title']);
-    printf("<td>%s</td>",$entry['path']);
-    printf("<td>%s</td>",$entry['teaser']);
+    printf("<td><a href='#' class='editable text' data-name='created' data-title='Erstellungsdatum' data-type='text' data-pk='%d'>%s</a></td>",$entry->id, $entry->created);
+    printf("<td><a href='#' class='editable text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>",$entry->id, $entry->title);
+    printf("<td><a href='#' class='editable text' data-name='path' data-title='Pfad' data-type='text' data-pk='%d'>%s</a></td>",$entry->id, $entry->path);
+    printf("<td><a href='#' class='editable textarea' data-name='teaser' data-title='Teaser' data-type='text' data-pk='%d'>%s</a></td>",$entry->id, $entry->teaser);
     echo "</tr>";
 }
 ?>

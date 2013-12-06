@@ -5,18 +5,18 @@
                 <div class="col-lg-12 col-md-12">
                     <article class="thisbox">
                         <div class="head ">
-                            <span><?php echo $news['title']; ?></span>
-                            <span class="pull-right "><?php echo $news['date']; ?></span>
+                            <span><?php echo $news->title; ?></span>
+                            <span class="pull-right "><?php echo $news->created; ?></span>
                         </div>
                         <div class="body">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <p class="text-muted">
-                                        <?php echo $news['teaser']; ?>
+                                        <?php echo $news->teaser; ?>
                                     </p>
                                 </div>
                                 <div class="col-lg-12 col-md-12" id="links">
-                                    <?php foreach ($news['pictures'] as $pic) { ?>
+                                    <?php foreach ($news->pictures as $pic) { ?>
                                         <p class="col-lg-4 col-md-4">
                                             <a href="<?php echo $pic; ?>" class="fancybox-thumb" rel="news1" >
                                                 <img class="img-thumbnail " alt=""
@@ -28,9 +28,9 @@
                             </div>
                         </div>
                         <?php
-                        $comments = $this->comments->findComments($news['date']);
+                        $comments = $this->comments->findComments($news->id);
                         $this->form->setAction($this->url());
-                        $this->form->getElement('newsdate')->setValue($news['date']);
+                        $this->form->getElement('newsid')->setValue($news->id);
                         ?>
                         <footer>
                             <span class="pointer glyphicon glyphicon-comment" data-toggle="collapse" data-target="#comments"> 

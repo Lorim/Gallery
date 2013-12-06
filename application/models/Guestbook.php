@@ -5,7 +5,7 @@ class Application_Model_Guestbook
     protected $_created;
     protected $_name;
     protected $_id;
-    protected $_newsdate;
+    protected $_newsid;
     protected $_active;
  
     public function __construct(array $options = null)
@@ -98,15 +98,15 @@ class Application_Model_Guestbook
         return $this->_id;
     }
     
-    public function setNewsdate($newsdate)
+    public function setNewsid($newsid)
     {
-    	$this->_newsdate = (string) $newsdate;
+    	$this->_newsid = (string) $newsid;
     	return $this;
     }
     
-    public function getNewsdate()
+    public function getNewsid()
     {
-    	return $this->_newsdate;
+    	return $this->_newsid;
     }
     
     public function setActive($active)

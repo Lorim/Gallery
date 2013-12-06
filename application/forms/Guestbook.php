@@ -23,13 +23,12 @@ public function init()
                 array('validator' => 'StringLength', 'options' => array(0, 2000))
                 )
         ));
-        $this->addElement('hidden', 'newsdate', array(
-        		'label'      => 'Dein Name:',
+        $this->addElement('hidden', 'newsid', array(
         		'required'   => false,
         		'filters'    => array('StringTrim'),
         		)
         );
-        $this->getElement('newsdate')->clearDecorators();
+        $this->getElement('newsid')->clearDecorators();
         
         $this->addElement('hidden', 'active', array(
         		
