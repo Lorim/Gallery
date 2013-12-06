@@ -8,11 +8,11 @@ class IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
         $oNews = new Application_Model_NewsMapper();
-
-        $paginator = Zend_Paginator::factory($oNews->findNews($this->_request->getParam('date')));
+        $paginator = Zend_Paginator::factory($oNews->findNews());
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(2);
         $this->view->news = $paginator;
+        
         $form = new Application_Form_Guestbook();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();

@@ -78,13 +78,11 @@ class Application_Model_NewsMapper {
         return $entries;
     }
 
-    public function findNews($newsdate) {
+    public function findNews() {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $resultSet = $this->getDbTable()->fetchAll();
         } else {
-            $resultSet = $this->getDbTable()->fetchAll(
-                    "created = '$newsdate'"
-            );
+            $resultSet = $this->getDbTable()->fetchAll();
         }
         $entries = array();
         foreach ($resultSet as $row) {

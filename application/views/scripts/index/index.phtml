@@ -28,6 +28,7 @@
                             </div>
                         </div>
                         <?php
+                        
                         $comments = $this->comments->findComments($news->id);
                         $this->form->setAction($this->url());
                         $this->form->getElement('newsid')->setValue($news->id);
