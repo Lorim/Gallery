@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <label for="comment" class="col-sm-2 control-label">Kommentar</label>
-    <div class="col-sm-4 <?php echo $this->form->getElement('comment')->hasErrors() ? "has-error": "";?>" data-toggle="tooltip" title="first tooltip" data-placement="top">
+    <div class="col-sm-4 <?php echo $this->form->getElement('comment')->hasErrors() ? "has-error": "";?>">
       <textarea id="comment" name="comment" class="form-control" rows="3" placeholder="Hier kannst du dich auslassen"><?php echo $this->form->getElement('comment')->getValue()?></textarea>
     </div>
   </div>

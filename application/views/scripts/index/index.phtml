@@ -54,8 +54,12 @@
                                             <div class="thisbox">
                                             <div class="head <?php echo $class; ?>">
                                                 <span><?php echo $comment->name ?></span>
-                                                <span class="pull-right ">
-                                                    <?php echo $comment->created; ?>
+                                                <span class="pull-right" 
+                                                      data-toggle="tooltip" 
+                                                      data-placement="top" 
+                                                      title 
+                                                      data-original-title="<?php echo $comment->created; ?>">
+                                                    <?php echo $comment->createddate; ?>
                                                 </span>
                                             </div>
                                             <div class="body">

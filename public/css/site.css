@@ -1,8 +1,7 @@
 @CHARSET "UTF-8";
 
 body { 
-    padding-top: 70px; 
-    background-color: #F9F9F9 !important;
+    padding-top: 70px;
 }
 
 .galleria{ width: 700px; height: 400px; background: #000 }
@@ -10,9 +9,9 @@ body {
 .thisbox {
     background: #ffffff;
     padding-bottom: 8px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
     -webkit-box-shadow: 0px 2px 6px -1px rgb(148, 148, 148);
     -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 2px 6px -1px rgb(148, 148, 148);
@@ -69,9 +68,12 @@ li.thisbox {
     padding: 5px 10px;
     background-color: #f2f2f2;
     color: #333333;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
 }
 .box,.thisbox .head span{
-    color: #333333;
+    color: #777777;
 }
 .box .body {
     

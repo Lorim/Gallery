@@ -78,6 +78,15 @@ class Application_Model_Guestbook
         return $this->_created;
     }
  
+    public function getCreateddate()
+    {
+        return substr($this->_created, 0, 10);
+    }
+    public function getCreatedtime()
+    {
+        return substr($this->_created, 11);
+    }
+    
     public function setId($id)
     {
         $this->_id = (int) $id;
