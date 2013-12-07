@@ -70,6 +70,9 @@ li.thisbox {
     -moz-border-radius: 3px 3px 0 0;
     border-radius: 3px 3px 0 0;
 }
+.thisbox .head.inactive {
+    background-color: #f2dede;
+}
 .box,.thisbox .head span{
     color: #777777;
 }

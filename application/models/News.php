@@ -6,6 +6,7 @@ class Application_Model_News
     protected $_title;
     protected $_teaser;
     protected $_path;
+    protected $_active;
     protected $_pictures;
  
     public function __construct(array $options = null)
@@ -89,6 +90,16 @@ class Application_Model_News
         return $this->_teaser;
     }
     
+    public function setActive($active)
+    {
+        $this->_active = $active;
+        return $this;
+    }
+    
+    public function getActive()
+    {
+        return $this->_active;
+    }
     public function setPath($path)
     {
     	$this->_path = (string) $path;

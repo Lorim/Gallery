@@ -28,7 +28,8 @@ class Application_Model_NewsMapper {
             'created' => $news->getCreated(),
             'title' => $news->getTitle(),
             'teaser' => $news->getTeaser(),
-            'path' => $news->getPath()
+            'path' => $news->getPath(),
+            'active' => $news->getActive()
         );
         if (null === ($id = $news->getId())) {
             unset($data['id']);
@@ -58,7 +59,8 @@ class Application_Model_NewsMapper {
                 ->setCreated($row->created)
                 ->setTitle($row->title)
                 ->setTeaser($row->teaser)
-                ->setPath($row->path);
+                ->setPath($row->path)
+                ->setActive();
 
         return $news;
     }
@@ -73,7 +75,8 @@ class Application_Model_NewsMapper {
                     ->setCreated($row->created)
                     ->setTitle($row->title)
                     ->setTeaser($row->teaser)
-                    ->setPath($row->path);
+                    ->setPath($row->path)
+                    ->setActive($row->active);
                 $entries[] = $entry;
         }
         return $entries;
@@ -86,7 +89,10 @@ class Application_Model_NewsMapper {
                     );
         } else {
             $resultSet = $this->getDbTable()->fetchAll(
-                    $this->getDbTable()->select()->order("created DESC")
+                    $this->getDbTable()
+                        ->select()
+                        ->order("created DESC")
+                        ->where("active = 1")
                     );
         }
         $entries = array();
@@ -96,7 +102,8 @@ class Application_Model_NewsMapper {
                     ->setCreated($row->created)
                     ->setTitle($row->title)
                     ->setTeaser($row->teaser)
-                    ->setPath($row->path);
+                    ->setPath($row->path)
+                    ->setActive($row->active);
             $entries[] = $entry;
         }
         return $entries;

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <article class="thisbox">
-                        <div class="head ">
+                        <div class="head <?php if($news->active == 0) echo 'inactive';?>">
                             <span><?php echo $news->title; ?></span>
                             <span class="pull-right "><?php echo $news->created; ?></span>
                         </div>
