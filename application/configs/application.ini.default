@@ -1,0 +1,40 @@
+[production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+phpSettings.displayExceptions = true
+includePaths.library = APPLICATION_PATH "/../library"
+bootstrap.path = APPLICATION_PATH "/Bootstrap.php"
+bootstrap.class = "Bootstrap"
+appnamespace = "Application"
+resources.frontController.controllerDirectory = APPLICATION_PATH "/controllers"
+resources.frontController.params.displayExceptions = 0
+
+resources.frontController.pluginPath = APPLICATION_PATH "/plugins"
+
+
+db.adapter = PDO_MYSQL
+db.isdefaulttableadapter = true
+db.params.host = db503464137.db.1and1.com
+db.params.username = dbo503464137
+db.params.password = SIEMENSDFS1
+db.params.dbname = db503464137
+db.params.charset = UTF8
+
+db.params.host = localhost
+db.params.username = root
+db.params.password = 
+
+resources.view[] =
+
+
+resources.layout.layoutPath = APPLICATION_PATH "/layouts/scripts/"
+[staging : production]
+
+[testing : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+
+[development : production]
+phpSettings.display_startup_errors = 1
+phpSettings.display_errors = 1
+resources.frontController.params.displayExceptions = 1

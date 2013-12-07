@@ -7,16 +7,18 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+        
         $oNews = new Application_Model_NewsMapper();
         $paginator = Zend_Paginator::factory($oNews->findNews());
         $paginator->setCurrentPageNumber($this->_getParam('page'));
         $paginator->setItemCountPerPage(2);
+        
         $this->view->news = $paginator;
         
         $form = new Application_Form_Guestbook();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();
-           
+        
         if ($request->isPost()) {
             if ($form->isValid($request->getParams())) {
                 $comment = new Application_Model_Guestbook($form->getValues());
@@ -30,7 +32,6 @@ class IndexController extends Zend_Controller_Action {
         $guestbook = new Application_Model_GuestbookMapper();
         $this->view->comments = $guestbook;
         $this->view->form = $form;
-        
     }
 
     public function loginAction() {

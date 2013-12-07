@@ -118,7 +118,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/jquery-2.0.3.js',
                     '/js/bootstrap.js',
                     '/js/jquery.blueimp-gallery.min.js',
-                    '//cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js',
+                    '/js/jquery.dataTables.min.js',
                     '/js/datatables.js',
                     '/js/bootstrap-editable.js',
                     '/js/bootstrap-datepicker.de.js',
