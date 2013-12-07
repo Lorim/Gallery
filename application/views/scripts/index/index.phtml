@@ -15,10 +15,10 @@
                                         <?php echo $news->teaser; ?>
                                     </p>
                                 </div>
-                                <div class="col-lg-12 col-md-12" id="links">
+                                <div class="col-lg-12 col-md-12 slide">
                                     <?php foreach ($news->pictures as $pic) { ?>
                                         <p class="col-lg-4 col-md-4">
-                                            <a href="<?php echo $pic; ?>" class="fancybox-thumb" rel="news1" >
+                                            <a href="<?php echo $pic; ?>" class="fancybox-thumb" rel="news-<?php echo $news->id;?>" >
                                                 <img class="img-thumbnail " alt=""
                                                      src="<?php echo $pic; ?>">
                                             </a>
@@ -37,10 +37,10 @@
                         }
                         ?>
                         <footer>
-                            <span class="pointer glyphicon glyphicon-comment" data-toggle="collapse" data-target="#comments"> 
+                            <span class="pointer glyphicon glyphicon-comment" data-toggle="collapse" data-target="#comments-<?php echo $news->id;?>"> 
                                 <?php echo count($comments) ?> Kommentare
                             </span> 
-                            <div class="row collapse <?php echo $this->commentsubmit ? "in" : "" ?>" id="comments">
+                            <div class="row collapse <?php echo $this->commentsubmit ? "in" : "" ?>" id="comments-<?php echo $news->id;?>">
                                 <hr>
                                     <?php
                                     foreach ($comments as $comment) {

@@ -62,7 +62,7 @@ $(document).ready(function() {
         });
     });
     
-    $('#links').click(function(event) {
+    $('.slide').click(function(event) {
         event = event || window.event;
         var target = event.target || event.srcElement,
                 link = target.src ? target.parentNode : target,
