@@ -60,7 +60,7 @@ class Application_Model_NewsMapper {
                 ->setTitle($row->title)
                 ->setTeaser($row->teaser)
                 ->setPath($row->path)
-                ->setActive();
+                ->setActive($row->active);
 
         return $news;
     }
