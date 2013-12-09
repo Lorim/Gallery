@@ -1,10 +1,9 @@
 <?php
-class Application_Model_News
+class Application_Model_Gallery
 {
     protected $_id;
     protected $_created;
     protected $_title;
-    protected $_teaser;
     protected $_path;
     protected $_active;
     protected $_pictures;
@@ -20,7 +19,7 @@ class Application_Model_News
     {
         $method = 'set' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Ungültige News Eigenschaft');
+            throw new Exception('Ungültige Gallery Eigenschaft');
         }
         $this->$method($value);
     }
@@ -29,7 +28,7 @@ class Application_Model_News
     {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Ungültige News Eigenschaft');
+            throw new Exception('Ungültige Gallery Eigenschaft');
         }
         return $this->$method();
     }
@@ -78,17 +77,6 @@ class Application_Model_News
     {
         return $this->_title;
     }
- 
-    public function setTeaser($name)
-    {
-        $this->_teaser = (string) $name;
-        return $this;
-    }
- 
-    public function getTeaser()
-    {
-        return $this->_teaser;
-    }
     
     public function setActive($active)
     {
@@ -107,21 +95,18 @@ class Application_Model_News
         $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
         $aPictures = array();
         foreach($aList as $sPicture) {
-            //$aPictures[] = "/images/" . $path . "/" . basename($sPicture);
             $aPictures[] = basename($sPicture);
         }
         $this->_pictures = $aPictures;
     	return $this;
     }
-    
+    public function getPictures()
+    {
+        return $this->_pictures;
+    }
     public function getPath()
     {
     	return $this->_path;
-    }
-    
-    public function getPictures()
-    {
-        return (array)$this->_pictures;
     }
     
     static public function getPaths()

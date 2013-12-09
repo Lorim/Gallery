@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_NewsMapper {
+class Application_Model_GalleryMapper {
 
     protected $_dbTable;
 
@@ -17,17 +17,16 @@ class Application_Model_NewsMapper {
 
     public function getDbTable() {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_News');
+            $this->setDbTable('Application_Model_DbTable_Gallery');
         }
         return $this->_dbTable;
     }
 
-    public function save(Application_Model_News $news) {
+    public function save(Application_Model_Gallery $news) {
 
         $data = array(
             'created' => $news->getCreated(),
             'title' => $news->getTitle(),
-            'teaser' => $news->getTeaser(),
             'path' => $news->getPath(),
             'active' => $news->getActive()
         );
@@ -43,12 +42,12 @@ class Application_Model_NewsMapper {
         }
     }
 
-    public function delete(Application_Model_News $news) {
+    public function delete(Application_Model_Gallery $news) {
         $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $news->getId());
         $this->getDbTable()->delete($where);
     }
 
-    public function find($id, Application_Model_News $news) {
+    public function find($id, Application_Model_Gallery $news) {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
             return;
@@ -58,7 +57,6 @@ class Application_Model_NewsMapper {
         $news->setId($row->id)
                 ->setCreated($row->created)
                 ->setTitle($row->title)
-                ->setTeaser($row->teaser)
                 ->setPath($row->path)
                 ->setActive($row->active);
 
@@ -70,11 +68,10 @@ class Application_Model_NewsMapper {
 
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_News();
+            $entry = new Application_Model_Gallery();
             $entry->setId($row->id)
                     ->setCreated($row->created)
                     ->setTitle($row->title)
-                    ->setTeaser($row->teaser)
                     ->setPath($row->path)
                     ->setActive($row->active);
                 $entries[] = $entry;
@@ -82,7 +79,7 @@ class Application_Model_NewsMapper {
         return $entries;
     }
 
-    public function findNews() {
+    public function findGalleries() {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $resultSet = $this->getDbTable()->fetchAll(
                     $this->getDbTable()->select()->order("created DESC")
@@ -97,11 +94,10 @@ class Application_Model_NewsMapper {
         }
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_News();
+            $entry = new Application_Model_Gallery();
             $entry->setId($row->id)
                     ->setCreated($row->created)
                     ->setTitle($row->title)
-                    ->setTeaser($row->teaser)
                     ->setPath($row->path)
                     ->setActive($row->active);
             $entries[] = $entry;
