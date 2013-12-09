@@ -46,6 +46,7 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setTeaser($this->_request->getParam('teaser'));
             $oEntry->setCreated($this->_request->getParam('created'));
             $oEntry->setPath($this->_request->getParam('path'));
+            $oEntry->setActive($this->_request->getParam('active', 0));
             
             $oNews->save($oEntry);
         }  catch (Exception $e) {
