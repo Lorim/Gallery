@@ -42,6 +42,13 @@
 					<resource>admin</resource>
 					<privilege>news</privilege>
 				</news>
+                                <gallery>
+					<label>Gallery</label>
+					<controller>admin</controller>
+					<action>gallery</action>
+					<resource>admin</resource>
+					<privilege>gallery</privilege>
+				</gallery>
 			</pages>
 		</admin>
 	</nav>

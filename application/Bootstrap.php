@@ -122,6 +122,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/datatables.js',
                     '/js/bootstrap-editable.js',
                     '/js/bootstrap-datepicker.de.js',
+                    '/js/jquery.slides.js',
                     '/js/site.js',
 				
 		);

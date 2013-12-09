@@ -22,11 +22,18 @@
                                     </p>
                                 </div>
                                 <div class="col-lg-12 col-md-12 slide">
-                                    <?php foreach ($news->pictures as $pic) { ?>
+                                    <?php foreach ($news->pictures as $pic) { 
+                                        $picpath = $this->url(array(
+                                            'controller' => 'index',
+                                            'action' => 'getimage',
+                                            'id' => $news->id,
+                                            'img' => $pic
+                                        ));
+                                        ?>
                                         <p class="col-lg-4 col-md-4">
-                                            <a href="<?php echo $pic; ?>" class="fancybox-thumb" rel="news-<?php echo $news->id;?>" >
+                                            <a href="<?php echo $picpath; ?>" class="fancybox-thumb" rel="news-<?php echo $news->id;?>" >
                                                 <img class="img-thumbnail " alt=""
-                                                     src="<?php echo $pic; ?>">
+                                                     src="<?php echo $picpath; ?>">
                                             </a>
                                         </p>
                                     <?php } ?>

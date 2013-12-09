@@ -1,0 +1,47 @@
+<table class="datatable table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Titel</th>
+            <th>Pfad</th>
+            <th>Aktiv</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $aActive = array("Inaktiv", "Aktiv");
+        foreach ($this->entries as $entry) {
+            echo "<tr>";
+            printf("<td><a href='#' class='editable2' data-type='date' data-name='created' data-title='Erstellungsdatum' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->created);
+            printf("<td><a href='#' class='editable2' data-type='text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->title);
+            printf("<td><a href='#' class='editable2' data-type='select' data-name='path' data-title='Pfad' data-type='text' data-pk='%d' data-source='/admin/getpaths'>%s</a></td>", $entry->id, $entry->path);
+            printf("<td><a href='#' class='editable2' data-type='select' data-source='%s' data-name='active' data-value='%s' data-emptytext='inaktiv' data-title='Active' data-type='select' data-pk='%d'>%s</a></td>", '[{value: "1", text: "Aktiv"},{value: 0, text: "Inaktiv"}]', $entry->active,$entry->id,  $aActive[$entry->active]);
+            echo "</tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
+<h2>Neuer Eintrag</h2>
+
+<table id="user" class="table table-bordered table-striped">
+    <tbody> 
+        <tr>         
+            <td>Titel</td>
+            <td><a href="#" class=" editable new" data-type="text" data-name="title" data-mode="inline" data-original-title="Enter firstname"></a></td>
+        </tr>  
+        <tr>         
+            <td>Pfad</td>
+            <td><a href="#" class=" editable new" data-type="select" data-name="path" data-mode="inline" data-source="/admin/getpaths" data-original-title="Welche Bilder sollen angezeigt werden"></a></td>
+        </tr>     
+        <tr>         
+            <td width="40%">Datum</td>
+            <td><a href="#" class=" editable new" data-type="date" data-name="created" data-viewformat="dd/mm/yyyy" data-original-title="Shootingdatum eingeben"></a></td>
+        </tr>
+        <tr>         
+            <td width="40%">Aktiv</td>
+            <td><a href="#" class=" editable new" data-type="select" data-source="[{value: '1', text: 'Aktiv'},{value: '0', text: 'Inaktiv'}]" data-name="active" data-value="0" data-viewformat="dd/mm/yyyy" data-original-title="News anzeigen"></a></td>
+        </tr>
+    </tbody>
+</table>
+<button id="save-btn2" class="btn btn-primary">Eintragen</button>

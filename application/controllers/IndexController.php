@@ -62,7 +62,34 @@ class IndexController extends Zend_Controller_Action {
         $this->view->form = $form;
         
     }
-            
+
+    public function galleryAction() {
+        $oGallery = new Application_Model_GalleryMapper();
+        $this->view->entry = $oGallery->findGalleries();
+    }
+    public function getimageAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        
+        $oNews = new Application_Model_NewsMapper();
+        $oEntry = new Application_Model_News();
+        $sImg = $this->_request->getParam('img');
+        $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
+        header('Content-type: application/jpg');
+        readfile(APPLICATION_PATH."/../public/images/".$oNewsEntry->getPath()."/".$sImg);
+    }
+    
+    public function getgalleryimageAction()
+    {
+        $this->_helper->layout()->disableLayout();
+        
+        $oGallery = new Application_Model_GalleryMapper();
+        $oEntry = new Application_Model_Gallery();
+        $sImg = $this->_request->getParam('img');
+        $oGalleryEntry = $oGallery->find($this->_getParam('id'), $oEntry);
+        header('Content-type: application/jpg');
+        readfile(APPLICATION_PATH."/../public/images/".$oGalleryEntry->getPath()."/".$sImg);
+    }
 
     public function loginAction() {
         $form = new Application_Form_Login();
