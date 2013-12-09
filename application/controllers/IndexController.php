@@ -33,6 +33,36 @@ class IndexController extends Zend_Controller_Action {
         $this->view->comments = $guestbook;
         $this->view->form = $form;
     }
+    
+    public function newsAction() {
+        $oNews = new Application_Model_NewsMapper();
+        $oEntry = new Application_Model_News();
+        $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
+        
+        $this->_helper->layout()->getView()->headTitle($oNewsEntry->getTitle(), 
+                Zend_View_Helper_Placeholder_Container_Abstract::SET);
+        
+        $this->view->news = $oNewsEntry;
+
+        $form = new Application_Form_Guestbook();
+        $form->getElement('active')->setValue(0);
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            if ($form->isValid($request->getParams())) {
+                $comment = new Application_Model_Guestbook($form->getValues());
+                $mapper = new Application_Model_GuestbookMapper();
+                $mapper->save($comment);
+                $form->reset();
+            }
+            $this->view->commentsubmit = true;
+        }
+        
+        $guestbook = new Application_Model_GuestbookMapper();
+        $this->view->comments = $guestbook;
+        $this->view->form = $form;
+        
+    }
+            
 
     public function loginAction() {
         $form = new Application_Form_Login();

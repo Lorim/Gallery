@@ -15,17 +15,17 @@ $(document).ready(function() {
         var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
         length_sel.addClass('form-control input-sm');
     });
-    
+
     $('.editable').editable({
         type: $(this).data("type"),
         url: '/admin/updatenews',
         placement: 'auto',
         datepicker: {
-            language : 'de'
+            language: 'de'
         },
         source: '/list'
     });
-    
+
     $('#save-btn').click(function() {
         $('.new').editable('submit', {
             url: '/admin/addnews',
@@ -61,7 +61,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     $('.slide').click(function(event) {
         event = event || window.event;
         var target = event.target || event.srcElement,

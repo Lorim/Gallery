@@ -50,8 +50,10 @@ class AdminController extends Zend_Controller_Action
             
             $oNews->save($oEntry);
         }  catch (Exception $e) {
-            Zend_Debug::dump($e);
+            echo $this->view->json(array("success" => false));
+            //Zend_Debug::dump($e);
         }
+        echo $this->view->json(array("success" => true, "id" => 1));
     }
     
     public function getpathsAction()
@@ -64,7 +66,7 @@ class AdminController extends Zend_Controller_Action
             $aReturn[] = array($sPath => $sPath);
         }
         
-        echo json_encode($aReturn);
+        echo $this->view->json($aReturn);
     }
 }
 
