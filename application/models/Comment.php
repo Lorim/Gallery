@@ -1,5 +1,5 @@
 <?php
-class Application_Model_Guestbook
+class Application_Model_Comment
 {
     protected $_comment;
     protected $_created;
@@ -19,7 +19,7 @@ class Application_Model_Guestbook
     {
         $method = 'set' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Ungültige Guestbook Eigenschaft');
+            throw new Exception('Ungültige Comment Eigenschaft');
         }
         $this->$method($value);
     }
@@ -28,7 +28,7 @@ class Application_Model_Guestbook
     {
         $method = 'get' . $name;
         if (('mapper' == $name) || !method_exists($this, $method)) {
-            throw new Exception('Ungültige Guestbook Eigenschaft');
+            throw new Exception('Ungültige Comment Eigenschaft');
         }
         return $this->$method();
     }

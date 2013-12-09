@@ -11,7 +11,7 @@ class AdminController extends Zend_Controller_Action
     public function commentsAction()
     {
 		
-    	$guestbook = new Application_Model_GuestbookMapper();
+    	$guestbook = new Application_Model_CommentMapper();
     	$this->view->entries = $guestbook->fetchAll();
 
     }

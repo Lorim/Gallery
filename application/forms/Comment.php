@@ -1,7 +1,7 @@
 <?php
 
 
-class Application_Form_Guestbook extends Zend_Form
+class Application_Form_Comment extends Zend_Form
 {
 public function init()
     {

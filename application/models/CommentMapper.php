@@ -1,6 +1,6 @@
 <?php
 
-class Application_Model_GuestbookMapper {
+class Application_Model_CommentMapper {
 
     protected $_dbTable;
 
@@ -17,21 +17,21 @@ class Application_Model_GuestbookMapper {
 
     public function getDbTable() {
         if (null === $this->_dbTable) {
-            $this->setDbTable('Application_Model_DbTable_Guestbook');
+            $this->setDbTable('Application_Model_DbTable_Comment');
         }
         return $this->_dbTable;
     }
 
-    public function save(Application_Model_Guestbook $guestbook) {
+    public function save(Application_Model_Comment $comment) {
 
         $data = array(
-            'name' => $guestbook->getName(),
-            'comment' => $guestbook->getComment(),
+            'name' => $comment->getName(),
+            'comment' => $comment->getComment(),
             'created' => date('Y-m-d H:i:s'),
-            'newsid' => $guestbook->getNewsid(),
-            'active' => $guestbook->getActive()
+            'newsid' => $comment->getNewsid(),
+            'active' => $comment->getActive()
         );
-        if (null === ($id = $guestbook->getId())) {
+        if (null === ($id = $comment->getId())) {
             unset($data['id']);
             try {
                 $this->getDbTable()->insert($data);
@@ -43,33 +43,33 @@ class Application_Model_GuestbookMapper {
         }
     }
 
-    public function delete(Application_Model_Guestbook $guestbook) {
-        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $guestbook->getId());
+    public function delete(Application_Model_Comment $comment) {
+        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $comment->getId());
         $this->getDbTable()->delete($where);
     }
 
-    public function find($id, Application_Model_Guestbook $guestbook) {
+    public function find($id, Application_Model_Comment $comment) {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
             return;
         }
         $row = $result->current();
 
-        $guestbook->setId($row->id)
+        $comment->setId($row->id)
                 ->setName($row->name)
                 ->setComment($row->comment)
                 ->setCreated($row->created)
                 ->setNewsid($row->newsid)
                 ->setActive($row->active);
 
-        return $guestbook;
+        return $comment;
     }
 
     public function fetchAll() {
         $resultSet = $this->getDbTable()->fetchAll();
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Guestbook();
+            $entry = new Application_Model_Comment();
             $entry->setId($row->id)
                     ->setName($row->name)
                     ->setComment($row->comment)
@@ -93,7 +93,7 @@ class Application_Model_GuestbookMapper {
         }
         $entries = array();
         foreach ($resultSet as $row) {
-            $entry = new Application_Model_Guestbook();
+            $entry = new Application_Model_Comment();
             $entry->setId($row->id)
                     ->setName($row->name)
                     ->setComment($row->comment)

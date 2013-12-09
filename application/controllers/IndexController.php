@@ -15,21 +15,21 @@ class IndexController extends Zend_Controller_Action {
         
         $this->view->news = $paginator;
         
-        $form = new Application_Form_Guestbook();
+        $form = new Application_Form_Comment();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();
         
         if ($request->isPost()) {
             if ($form->isValid($request->getParams())) {
-                $comment = new Application_Model_Guestbook($form->getValues());
-                $mapper = new Application_Model_GuestbookMapper();
+                $comment = new Application_Model_Comment($form->getValues());
+                $mapper = new Application_Model_CommentMapper();
                 $mapper->save($comment);
                 $form->reset();
             }
             $this->view->commentsubmit = true;
         }
         
-        $guestbook = new Application_Model_GuestbookMapper();
+        $guestbook = new Application_Model_CommentMapper();
         $this->view->comments = $guestbook;
         $this->view->form = $form;
     }
@@ -44,20 +44,20 @@ class IndexController extends Zend_Controller_Action {
         
         $this->view->news = $oNewsEntry;
 
-        $form = new Application_Form_Guestbook();
+        $form = new Application_Form_Comment();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();
         if ($request->isPost()) {
             if ($form->isValid($request->getParams())) {
-                $comment = new Application_Model_Guestbook($form->getValues());
-                $mapper = new Application_Model_GuestbookMapper();
+                $comment = new Application_Model_Comment($form->getValues());
+                $mapper = new Application_Model_CommentMapper();
                 $mapper->save($comment);
                 $form->reset();
             }
             $this->view->commentsubmit = true;
         }
         
-        $guestbook = new Application_Model_GuestbookMapper();
+        $guestbook = new Application_Model_CommentMapper();
         $this->view->comments = $guestbook;
         $this->view->form = $form;
         
@@ -97,8 +97,8 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function editnewsAction() {
-        $gb = new Application_Model_GuestbookMapper();
-        $comment = $gb->find($this->_getParam('comment'), new Application_Model_Guestbook());
+        $gb = new Application_Model_CommentMapper();
+        $comment = $gb->find($this->_getParam('comment'), new Application_Model_Comment());
 
         switch ($this->_getParam('c')) {
             case 'enable':
