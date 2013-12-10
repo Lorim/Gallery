@@ -15,7 +15,7 @@
             echo "<tr>";
             printf("<td><a href='#' class='editable' data-type='date' data-name='created' data-title='Erstellungsdatum' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->created);
             printf("<td><a href='#' class='editable' data-type='text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->title);
-            printf("<td><a href='#' class='editable' data-type='select' data-name='path' data-title='Pfad' data-type='text' data-pk='%d' data-source='/admin/getpaths'>%s</a></td>", $entry->id, $entry->path);
+            printf("<td><a href='#' class='editable' data-type='select' data-name='path' data-title='Pfad' data-type='text' data-pk='%d' data-value='%s' data-source='/admin/getpaths'>%s</a></td>", $entry->id, $entry->path, $entry->path);
             printf("<td><a href='#' class='editable' data-type='text' data-name='teaser' data-title='Teaser' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->teaser);
             printf("<td><a href='#' class='editable' data-type='select' data-source='%s' data-name='active' data-value='%s' data-emptytext='inaktiv' data-title='Active' data-type='select' data-pk='%d'>%s</a></td>", '[{value: "1", text: "Aktiv"},{value: 0, text: "Inaktiv"}]', $entry->active,$entry->id,  $aActive[$entry->active]);
             echo "</tr>";

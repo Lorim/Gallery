@@ -121,9 +121,20 @@ $(document).ready(function() {
                 links = this.getElementsByTagName('a');
         blueimp.Gallery(links, options);
     });
-    $("#slides").slidesjs({
-        width: 120,
-        height: 80
-    });
+    var jcarousel = $('.jcarousel');
+        jcarousel
+            .jcarousel({
+                wrap: 'circular'
+            })
+            .jcarouselAutoscroll({
+                interval: 3000,
+                target: '+=1',
+                autostart: true
+            });
+
+        $('[data-jcarousel-control]').each(function() {
+            var el = $(this);
+            el.jcarouselControl(el.data());
+        });
 });
 

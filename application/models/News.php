@@ -107,8 +107,7 @@ class Application_Model_News
         $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
         $aPictures = array();
         foreach($aList as $sPicture) {
-            //$aPictures[] = "/images/" . $path . "/" . basename($sPicture);
-            $aPictures[] = basename($sPicture);
+            $aPictures[] = "/images/" . $path . "/" . basename($sPicture);
         }
         $this->_pictures = $aPictures;
     	return $this;

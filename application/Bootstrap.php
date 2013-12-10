@@ -108,6 +108,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/css/bootstrap-image-gallery.css',
                     '/css/datatables.css',
                     '/css/bootstrap-editable.css',
+                    '/css/jcarousel.responsive.css',
                     '/css/site.css',
 
 		);
@@ -122,7 +123,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/datatables.js',
                     '/js/bootstrap-editable.js',
                     '/js/bootstrap-datepicker.de.js',
-                    '/js/jquery.slides.js',
+                    '/js/jquery.jcarousel.min.js',
                     '/js/site.js',
 				
 		);

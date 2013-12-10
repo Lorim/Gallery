@@ -95,7 +95,7 @@ class Application_Model_Gallery
         $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
         $aPictures = array();
         foreach($aList as $sPicture) {
-            $aPictures[] = basename($sPicture);
+            $aPictures[] = "/images/" . $path . "/" . basename($sPicture);
         }
         $this->_pictures = $aPictures;
     	return $this;
