@@ -97,7 +97,7 @@ class Application_Model_Gallery
         foreach($aList as $sPicture) {
             $aPictures[] = array(
                "original" => "/images/" . $path . "/" . basename($sPicture),
-               "thumb" =>  $this->getThumb("/images/" . $path . "/" . basename($sPicture))
+               "thumb" => Application_Model_Thumb::getThumb("/images/" . $path . "/" . basename($sPicture))
             );
             
         }
@@ -109,27 +109,7 @@ class Application_Model_Gallery
     {
         return $this->_pictures;
     }
-    
-    private function getThumb($sPath)
-    {
-        $path = dirname(APPLICATION_PATH."/../public" .$sPath);
-        $file = basename($sPath);
-        if(!file_exists($path."/".$file)) return;
-        try {
-            if(!file_exists($path."/thumb")) {
-                mkdir($path."/thumb");
-            }
-            if(!file_exists($path. "/thumb/".$file)) {
-                $thumb = Application_Thumb_Factory::create($path."/".$file); 
-                $thumb->resize(188,280)->save($path. "/thumb/".$file);
-            }
-        }  catch (Exception $e) {
-            Zend_Debug::dump($e->getMessage());
-            return $sPath;
-        }
-        return dirname($sPath). "/thumb/".$file;
-    }
-    
+  
     public function getPath()
     {
     	return $this->_path;
