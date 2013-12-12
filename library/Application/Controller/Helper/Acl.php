@@ -31,7 +31,7 @@ class Application_Controller_Helper_Acl
     	$this->acl->allow(
     			"guest", 
     			array("index"),
-    			array("news","kontakt","index", "login"));
+    			array("news","kontakt","index", "login", "gallery"));
     	
     	$this->acl->allow(
     		null, 
