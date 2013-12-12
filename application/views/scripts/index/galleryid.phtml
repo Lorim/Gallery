@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-lg-9 col-md-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <article class="thisbox">
+                        <div class="head">
+                            <span><?php echo $this->entry->title; ?></span>
+                            <span class="pull-right "><?php echo $this->entry->created; ?></span>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 slide">
+                                    <?php foreach ($this->entry->pictures as $pic) { ?>
+                                        <p class="col-lg-4 col-md-4">
+                                            <a href="<?php echo $pic; ?>" class="fancybox-thumb" rel="news-<?php echo $this->entry->id;?>" >
+                                                <img class="img-thumbnail " alt=""
+                                                     src="<?php echo $pic; ?>">
+                                            </a>
+                                        </p>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+    </div>
+    <div class="col-lg-3 visible-lg">
+        <article class="thisbox">
+            <div class="head">
+                <span>Profil</span>
+            </div>
+            <div class="body">
+                <p>
+                    <img class="img-thumbnail " alt="" src="/img/profil2.jpg"/>
+                </p>
+                <p class="text-muted">
+                    Ich fotografiere seitdem ich denken kann. Vor allem Licht, 
+                    Gesichter und Momente haben mich schon immer fasziniert. 
+                    Die Fotografie gibt mir die Möglichkeit dem Ausdruck zu 
+                    verleihen. Aber weil man – wie Mama immer so schön sagt – 
+                    auch “was anständiges lernen” soll, habe ich 2011 mein 
+                    Studium der Medienwirtschaft erfolgreich abgeschlossen und 
+                    war von 2008-2012 in der Formatentwicklung der 
+                    TV-Produktionsfirma ITV Studios Germany tätig. Die 
+                    Fotografie habe ich aber parallel nie aufgeben – sie war 
+                    immer meine Nummer Eins. Seit 2011 bin ich offziell als 
+                    freie Fotografin tätig. Zum Glück.
+                </p>
+            </div>
+        </article>
+    </div>
+</div>

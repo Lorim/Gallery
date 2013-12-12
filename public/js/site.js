@@ -88,6 +88,7 @@ $(document).ready(function() {
                     $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
                     $('#save-btn').hide();
                     $(this).off('save.newuser');
+                    
                 } else if (data && data.errors) {
                     //server-side validation error, response like {"errors": {"username": "username already exist"} }
                     config.error.call(this, data.errors);
@@ -121,20 +122,26 @@ $(document).ready(function() {
                 links = this.getElementsByTagName('a');
         blueimp.Gallery(links, options);
     });
-    var jcarousel = $('.jcarousel');
-        jcarousel
-            .jcarousel({
-                wrap: 'circular'
-            })
+    $('.jcarousel').each(function() {
+        var el = $(this);
+        el.jcarousel({
+            wrap: 'circular',
+            animation: {
+                duration: 800,
+                easing:   'swing',
+                complete: function() {
+                }
+            }
+        })
             .jcarouselAutoscroll({
-                interval: 3000,
                 target: '+=1',
-                autostart: true
-            });
-
-        $('[data-jcarousel-control]').each(function() {
-            var el = $(this);
-            el.jcarouselControl(el.data());
-        });
+                autostart: true,
+                interval: el.data('interval')
+            })
+    });
+    $('[data-jcarousel-control]').each(function() {
+        var el = $(this);
+        el.jcarouselControl(el.data());
+    });
 });
 

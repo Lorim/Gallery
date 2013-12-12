@@ -11,38 +11,40 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="row">
                                     <?php foreach ($this->entry as $entry) {?>
-                                        <div class="col-lg-4 col-md-3">
-                                            <div class="jcarousel">
-                                                <ul>
-                                                <?php
-                                                foreach($entry->pictures as $pic)
-                                                {
-                                                    $picpath = $this->url(array(
-                                                        'controller' => 'index',
-                                                        'action' => 'getgalleryimage',
-                                                        'id' => $entry->id,
-                                                        'img' => $pic
-                                                    ));
-                                                ?>
-                                                <li>
-                                                    <a class="thumbnail">
-                                                        <img src="<?php echo $pic; ?>">
-                                                    </a>
-                                                </li>
-                                                <?php } ?>
-                                                </ul>
+                                        <div class="col-lg-4 col-md-4">
+                                            <div class="jcarousel-wrapper">
+                                                <div class="jcarousel" data-interval="<?php echo rand(2000,6000); ?>">
+                                                    <ul>
+                                                        <?php
+                                                        $pictures = $entry->pictures;
+                                                        shuffle($pictures);
+                                                        array_splice($pictures,3);
+                                                        foreach($pictures as $pic)
+                                                        {
+                                                            $gallerypath = $this->url(array(
+                                                                'controller' => 'index',
+                                                                'action' => 'gallery',
+                                                                'id' => $entry->id
+                                                            ));
+                                                        ?>
+                                                        <li>
+                                                            <a href="<?php echo $gallerypath; ?>" class="thumbnail">
+                                                                <div class="caption">
+                                                                    <span class="text-muted"><?php echo $entry->title; ?></span>
+                                                                </div>
+                                                                <img src="<?php echo $pic; ?>">
+                                                            </a>
+                                                        </li>
+                                                        <?php } ?>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <!--
-                                            <a data-jcarousel-control="true" data-target="-=1" href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                                            <a data-jcarousel-control="true" data-target="+=1" href="#" class="jcarousel-control-next">&rsaquo;</a>
-                                            -->
                                         </div>
                                     <?php } ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
                     </article>
                 </div>
             </div>

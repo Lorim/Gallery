@@ -47,20 +47,20 @@ class Application_Model_GalleryMapper {
         $this->getDbTable()->delete($where);
     }
 
-    public function find($id, Application_Model_Gallery $news) {
+    public function find($id, Application_Model_Gallery $gallery) {
         $result = $this->getDbTable()->find($id);
         if (0 == count($result)) {
             return;
         }
         $row = $result->current();
 
-        $news->setId($row->id)
+        $gallery->setId($row->id)
                 ->setCreated($row->created)
                 ->setTitle($row->title)
                 ->setPath($row->path)
                 ->setActive($row->active);
 
-        return $news;
+        return $gallery;
     }
 
     public function fetchAll() {

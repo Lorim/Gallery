@@ -65,7 +65,13 @@ class IndexController extends Zend_Controller_Action {
 
     public function galleryAction() {
         $oGallery = new Application_Model_GalleryMapper();
-        $this->view->entry = $oGallery->findGalleries();
+        $iGalleryid = $this->_request->getParam('id');
+        if($iGalleryid) {
+            $this->_helper->viewRenderer->setRender('galleryid'); 
+            $this->view->entry = $oGallery->find($iGalleryid, new Application_Model_Gallery);
+        } else {
+            $this->view->entry = $oGallery->findGalleries();
+        }
     }
 
 
