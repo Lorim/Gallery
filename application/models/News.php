@@ -107,7 +107,11 @@ class Application_Model_News
         $aList = glob(APPLICATION_PATH.'/../public/images/'.$path."/*.jpg");
         $aPictures = array();
         foreach($aList as $sPicture) {
-            $aPictures[] = "/images/" . $path . "/" . basename($sPicture);
+            $aPictures[] = array(
+               "original" => "/images/" . $path . "/" . basename($sPicture),
+               "thumb" =>  $this->getThumb("/images/" . $path . "/" . basename($sPicture))
+            );
+            
         }
         $this->_pictures = $aPictures;
     	return $this;
@@ -121,6 +125,26 @@ class Application_Model_News
     public function getPictures()
     {
         return (array)$this->_pictures;
+    }
+    
+    private function getThumb($sPath)
+    {
+        $path = dirname(APPLICATION_PATH."/../public" .$sPath);
+        $file = basename($sPath);
+        if(!file_exists($path."/".$file)) return;
+        try {
+            if(!file_exists($path."/thumb")) {
+                mkdir($path."/thumb");
+            }
+            if(!file_exists($path. "/thumb/".$file)) {
+                $thumb = Application_Thumb_Factory::create($path."/".$file); 
+                $thumb->resize(188,280)->save($path. "/thumb/".$file);
+            }
+        }  catch (Exception $e) {
+            Zend_Debug::dump($e->getMessage());
+            return $sPath;
+        }
+        return dirname($sPath). "/thumb/".$file;
     }
     
     static public function getPaths()

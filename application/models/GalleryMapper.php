@@ -112,7 +112,9 @@ class Application_Model_GalleryMapper {
         foreach($aList as $sPicture) {
             //$aPictures[] = "/images/" . $sPath . "/" . basename($sPicture);
             $aPictures[] = basename($sPicture);
+            Zend_Debug::dump($this->getThumb($sPicture));
         }
         return $aPictures;
     }
+    
 }
