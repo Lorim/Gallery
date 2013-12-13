@@ -26,20 +26,51 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$frontController->registerPlugin(new Application_Controller_Plugin_Acl());
 	
 		/**
-		 * add custom loginroute
+		 * add custom routes
 		 */
 		
 		$router = $frontController->getRouter();
 		$router->addRoute(
-				'loginroute',
-				new Zend_Controller_Router_Route(
-						'login', array(
-								'controller' => 'index',
-								'action' => 'login'
-								)
-						)
-				);
-		
+                    'loginroute',
+                    new Zend_Controller_Router_Route(
+                        'login', array(
+                            'controller' => 'index',
+                            'action' => 'login'
+                            )
+                        )
+                    );
+		$router->addRoute(
+                    'gallery',
+                    new Zend_Controller_Router_Route(
+                        'gallery/:id', array(
+                            'controller' => 'index',
+                            'action' => 'gallery',
+                            'id' => ''
+                        ),
+                        array('id' => '\d+')
+                    )
+                );
+                $router->addRoute(
+                    'news',
+                    new Zend_Controller_Router_Route(
+                        'news/:id', array(
+                            'controller' => 'index',
+                            'action' => 'news',
+                            'id' => ''
+                        ),
+                        array('id' => '\d+')
+                    )
+                );
+                $router->addRoute(
+                    'kontakt',
+                    new Zend_Controller_Router_Route(
+                        'kontakt/', array(
+                            'controller' => 'index',
+                            'action' => 'kontakt'
+                        )
+                    )
+                );
+                
 		$this->bootstrap('view');
 		$view = $this->getResource('view');
 		$config = new Zend_Config_Xml( APPLICATION_PATH . '/configs/navigation.xml', 'nav' );
@@ -53,15 +84,16 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
 		if ($auth->hasIdentity())
 		{
-			$navigation->addPage(
-					new Zend_Config(
-							array(
-									'label' => 'Logout',
-									'controller' => 'index',
-									'action' => 'logout',
-							)
-					)
-			);
+                    $navigation->addPage(
+                        new Zend_Config(
+                            array(
+                                'label' => 'Logout',
+                                'controller' => 'index',
+                                'action' => 'logout',
+                                'route' => 'default'
+                            )
+                        )
+                    );
 		}
 		$identity = $auth->getIdentity();
 	
@@ -108,7 +140,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/css/bootstrap-image-gallery.css',
                     '/css/datatables.css',
                     '/css/bootstrap-editable.css',
-                    '/css/jcarousel.responsive.css',
+                    '/css/owl.carousel.css',
+                    '/css/owl.theme.css',
                     '/css/site.css',
 
 		);
@@ -123,7 +156,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/datatables.js',
                     '/js/bootstrap-editable.js',
                     '/js/bootstrap-datepicker.de.js',
-                    '/js/jquery.jcarousel.min.js',
+                    '/js/owl.carousel.min.js',
                     '/js/site.js',
 				
 		);

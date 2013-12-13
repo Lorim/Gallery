@@ -4,6 +4,7 @@
 		<news>
 			<label>News</label>
 			<controller>index</controller>
+                        <route>default</route>
 			<action>index</action>
 			<resource>index</resource>
 			<privilege>news</privilege>
@@ -11,6 +12,7 @@
 		<gallery>
 			<label>Gallery</label>
 			<controller>index</controller>
+                        <route>gallery</route>
 			<action>gallery</action>
 			<resource>index</resource>
 			<privilege>news</privilege>
@@ -18,6 +20,7 @@
 		<kontakt>
 			<label>Kontakt</label>
 			<controller>index</controller>
+                        <route>kontakt</route>
 			<action>kontakt</action>
 			<resource>index</resource>
 			<privilege>kontakt</privilege>
@@ -25,12 +28,14 @@
 		<admin>
 			<label>Administration</label>
 			<controller></controller>
+                        <route>default</route>
 			<resource>admin</resource>
 			<privilege>index</privilege>
 			<pages>
 				<comment>
 					<label>Kommentare</label>
 					<controller>admin</controller>
+                                        <route>default</route>
 					<action>comments</action>
 					<resource>admin</resource>
 					<privilege>comments</privilege>
@@ -38,6 +43,7 @@
                                 <news>
 					<label>News</label>
 					<controller>admin</controller>
+                                        <route>default</route>
 					<action>news</action>
 					<resource>admin</resource>
 					<privilege>news</privilege>
@@ -45,6 +51,7 @@
                                 <gallery>
 					<label>Gallery</label>
 					<controller>admin</controller>
+                                        <route>default</route>
 					<action>gallery</action>
 					<resource>admin</resource>
 					<privilege>gallery</privilege>

@@ -81,6 +81,6 @@ li.thisbox {
     border-top: 1px solid #ededed;
 }
 
-.jcarousel-wrapper {
-    width: 200px;
+.owl-carousel img {
+    width: 100%;
 }

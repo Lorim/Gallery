@@ -64,6 +64,7 @@ class AdminController extends Zend_Controller_Action
     public function updategalleryAction()
     {
         $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
         
         $sField = $this->_request->getParam('name');
         $sValue = $this->_request->getParam('value');
@@ -71,7 +72,7 @@ class AdminController extends Zend_Controller_Action
         $oGallery = new Application_Model_GalleryMapper();
         $oGalleryentry = $oGallery->find($this->_request->getParam('pk'), new Application_Model_Gallery());
         $oGalleryentry->{$sField} = $sValue;
-        $oNews->save($oGalleryentry);
+        $oGallery->save($oGalleryentry);
     }
     
     public function addgalleryAction()

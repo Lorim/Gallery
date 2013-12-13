@@ -122,26 +122,20 @@ $(document).ready(function() {
                 links = this.getElementsByTagName('a');
         blueimp.Gallery(links, options);
     });
-    $('.jcarousel').each(function() {
-        var el = $(this);
-        el.jcarousel({
-            wrap: 'circular',
-            animation: {
-                duration: 800,
-                easing:   'swing',
-                complete: function() {
-                }
-            }
-        })
-            .jcarouselAutoscroll({
-                target: '+=1',
-                autostart: true,
-                interval: el.data('interval')
-            })
-    });
-    $('[data-jcarousel-control]').each(function() {
-        var el = $(this);
-        el.jcarouselControl(el.data());
+    $('.carousel').each(function() {
+        el = $(this);
+        el.owlCarousel({
+            autoPlay : el.data('interval'),
+            stopOnHover : true,
+            navigation:false,
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            goToFirstSpeed : 2000,
+            singleItem : true,
+            autoHeight : true,
+            transitionStyle:"fadeUp"
+        });
+
     });
 });
 
