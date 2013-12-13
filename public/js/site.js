@@ -128,12 +128,14 @@ $(document).ready(function() {
             autoPlay : el.data('interval'),
             stopOnHover : true,
             navigation:false,
-            slideSpeed : 300,
-            paginationSpeed : 400,
+            lazyLoad : true,
+            slideSpeed : 800,
+            paginationSpeed : 2000,
+            pagination: true,
             goToFirstSpeed : 2000,
             singleItem : true,
             autoHeight : true,
-            transitionStyle:"fadeUp"
+            //transitionStyle:"backSlide"
         });
 
     });

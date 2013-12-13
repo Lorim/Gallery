@@ -17,20 +17,22 @@
                                                             ), 'gallery');
                                         ?>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                            <a href="<?php echo $gallerypath; ?>" class="thumbnail">
-                                                <div class="caption">
+                                            <div class="thumbnail">
+                                                <a href="<?php echo $gallerypath; ?>" class="caption">
                                                     <span class="text-muted"><?php echo $entry->title; ?></span>
-                                                </div>
+                                                </a>
                                                 <div class="carousel owl-carousel" data-interval="<?php echo rand(2000,6000); ?>">
                                                     <?php
                                                     $pictures = $entry->pictures;
                                                     shuffle($pictures);
                                                     array_splice($pictures,3);
                                                     foreach($pictures as $pic) { ?>
-                                                    <img src="<?php echo $pic['thumb']; ?>">
+                                                    <a href="<?php echo $gallerypath; ?>">
+                                                        <img class="lazyOwl" data-src="<?php echo $pic['thumb']; ?>">
+                                                    </a>
                                                     <?php } ?>
                                                 </div>
-                                            </a>
+                                            </div>
                                         </div>
                                     <?php } ?>
                                 </div>
