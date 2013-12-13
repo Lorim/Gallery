@@ -21,11 +21,11 @@
                                                 <a href="<?php echo $gallerypath; ?>" class="caption">
                                                     <span class="text-muted"><?php echo $entry->title; ?></span>
                                                 </a>
-                                                <div class="carousel owl-carousel" data-interval="<?php echo rand(2000,6000); ?>">
+                                                <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,12000); ?>">
                                                     <?php
                                                     $pictures = $entry->pictures;
                                                     shuffle($pictures);
-                                                    array_splice($pictures,3);
+                                                    array_splice($pictures,5);
                                                     foreach($pictures as $pic) { ?>
                                                     <a href="<?php echo $gallerypath; ?>">
                                                         <img class="lazyOwl" data-src="<?php echo $pic['thumb']; ?>">

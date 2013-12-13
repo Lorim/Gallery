@@ -116,15 +116,15 @@
 }
 /* scaleUp */
 .owl-fadeUp-in {
-  -webkit-animation: scaleUpFrom .5s ease both;
-  -moz-animation: scaleUpFrom .5s ease both;
-  animation: scaleUpFrom .5s ease both;
+  -webkit-animation: scaleUpFrom 3.5s ease both;
+  -moz-animation: scaleUpFrom 3.5s ease both;
+  animation: scaleUpFrom 3.5s ease both;
 }
 
 .owl-fadeUp-out {
-  -webkit-animation: scaleUpTo .5s ease both;
-  -moz-animation: scaleUpTo .5s ease both;
-  animation: scaleUpTo .5s ease both;
+  -webkit-animation: scaleUpTo 3.5s ease both;
+  -moz-animation: scaleUpTo 3.5s ease both;
+  animation: scaleUpTo 3.5s ease both;
 }
 /* Keyframes */
 /*empty*/
