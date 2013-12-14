@@ -70,7 +70,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                         )
                     )
                 );
-                
+                $router->addRoute(
+                    'impressum',
+                    new Zend_Controller_Router_Route(
+                        'impressum/', array(
+                            'controller' => 'index',
+                            'action' => 'impressum'
+                        )
+                    )
+                );
 		$this->bootstrap('view');
 		$view = $this->getResource('view');
 		$config = new Zend_Config_Xml( APPLICATION_PATH . '/configs/navigation.xml', 'nav' );

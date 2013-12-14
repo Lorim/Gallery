@@ -25,6 +25,14 @@
 			<resource>index</resource>
 			<privilege>kontakt</privilege>
 		</kontakt>
+                <impressum>
+			<label>Impressum</label>
+			<controller>index</controller>
+                        <route>impressum</route>
+			<action>impressum</action>
+			<resource>index</resource>
+			<privilege>impressum</privilege>
+		</impressum>
 		<admin>
 			<label>Administration</label>
 			<controller></controller>
