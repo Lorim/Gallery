@@ -145,8 +145,14 @@ $(document).ready(function() {
         $.get(target, function(data) {
             $("#previewModal").html(data);
             $("#previewModal").modal("show");
+            $('.selectpicker').selectpicker();
+        })
+        .always(function() {
+            $('.selectpicker').selectpicker();
         });
+        
         return false;
     });
+    $('.selectpicker').selectpicker();
 });
 

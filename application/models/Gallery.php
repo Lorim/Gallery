@@ -106,6 +106,14 @@ class Application_Model_Gallery
     	return $this;
     }
     
+    public function previewToPic($sPic)
+    {
+        foreach ($this->getPictures() as $pic) {
+            if($sPic == basename($pic['original'])) {
+                return $pic;
+            }
+        }
+    }
     public function getPictures()
     {
         return $this->_pictures;
@@ -130,5 +138,12 @@ class Application_Model_Gallery
     {
         $this->_previews = $aPreview;
         return $this;
+    }
+    public function Preview($iElement)
+    {
+        if(isset($this->_previews[$iElement])) {
+            return $this->_previews[$iElement];
+        }
+        return false;
     }
 }

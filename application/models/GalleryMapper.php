@@ -38,7 +38,7 @@ class Application_Model_GalleryMapper {
         if (null === $this->_dbPreviewTable) {
             $this->setDbpreviewTable('Application_Model_DbTable_Gallerypreview');
         }
-        return $this->_dbTable;
+        return $this->_dbPreviewTable;
     }
     
     public function save(Application_Model_Gallery $news) {
@@ -58,9 +58,21 @@ class Application_Model_GalleryMapper {
             }
         } else {
             $this->getDbTable()->update($data, array('id = ?' => $id));
+            $this->getDbPreviewTable()->delete(
+                    $this->getDbPreviewTable()->getAdapter()->quoteInto('gid = ?', $news->getId())
+                    );
+            foreach($news->getPreviews() as $pid => $pic) {
+                if($pic == "") continue;
+                $data = array(
+                    'gid' => $news->getId(),
+                    'pid' => $pid,
+                    'picture' => $pic
+                );
+                $this->getDbPreviewTable()->insert($data);
+            }
         }
     }
-
+    
     public function delete(Application_Model_Gallery $news) {
         $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $news->getId());
         $this->getDbTable()->delete($where);
@@ -93,7 +105,8 @@ class Application_Model_GalleryMapper {
                     ->setCreated($row->created)
                     ->setTitle($row->title)
                     ->setPath($row->path)
-                    ->setActive($row->active);
+                    ->setActive($row->active)
+                    ->setPreviews($this->findPreviews($row->id));
                 $entries[] = $entry;
         }
         return $entries;
@@ -119,7 +132,8 @@ class Application_Model_GalleryMapper {
                     ->setCreated($row->created)
                     ->setTitle($row->title)
                     ->setPath($row->path)
-                    ->setActive($row->active);
+                    ->setActive($row->active)
+                    ->setPreviews($this->findPreviews($row->id));
             $entries[] = $entry;
         }
         return $entries;
@@ -130,12 +144,12 @@ class Application_Model_GalleryMapper {
         $resultSet = $this->getDbPreviewTable()->fetchAll(
                     $this->getDbPreviewTable()
                         ->select()
-                        ->order("created DESC")
-                        ->where("active = " . $iGalleryid)
+                        ->where("gid = " . $iGalleryid)
                     );
         $entries = array();
+        
         foreach ($resultSet as $row) {
-            $entries[] = $row;
+            $entries[$row->pid] = $row->picture;
         }
         return $entries;
     }

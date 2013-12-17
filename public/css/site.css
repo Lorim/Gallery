@@ -84,3 +84,7 @@ li.thisbox {
 .owl-carousel img {
     width: 100%;
 }
+
+.modal .preview {
+    width: 900px;
+}

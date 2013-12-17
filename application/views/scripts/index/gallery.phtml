@@ -23,10 +23,10 @@
                                                 </a>
                                                 <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,12000); ?>">
                                                     <?php
-                                                    $pictures = $entry->pictures;
-                                                    shuffle($pictures);
-                                                    array_splice($pictures,4);
-                                                    foreach($pictures as $pic) { ?>
+                                                    $pictures = $entry->previews;
+                                                    foreach($pictures as $pic) { 
+                                                    $pic = $entry->previewToPic($pic);    
+                                                    ?>
                                                     <a href="<?php echo $gallerypath; ?>">
                                                         <img class="lazyOwl" data-src="<?php echo $pic['thumb']; ?>">
                                                     </a>

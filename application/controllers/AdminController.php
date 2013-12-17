@@ -9,9 +9,11 @@ class AdminController extends Zend_Controller_Action
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/datatables.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-editable.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-datepicker.de.js'));
+        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-select.min.js'));
         $this->view->headScript()->appendFile( $this->view->baseUrl('/js/site.admin.js'));
         
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-editable.css'));
+        $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-select.min.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/datatables.css'));
     }
 
@@ -66,6 +68,15 @@ class AdminController extends Zend_Controller_Action
     {
         $oGallery = new Application_Model_GalleryMapper();
         $this->view->entries = $oGallery->fetchAll(); 
+        try {
+            if($this->getRequest()->isPost()) {
+                $oGalleryentry = $oGallery->find($this->_request->getParam('gid'), new Application_Model_Gallery());
+                $oGalleryentry->setPreviews($this->_request->getParam('preview'));
+                $oGallery->save($oGalleryentry);
+            }
+        }  catch (Exception $e) {
+            //Zend_Debug::dump($e);
+        }
     }
     
     public function updategalleryAction()
@@ -117,8 +128,7 @@ class AdminController extends Zend_Controller_Action
         $this->_helper->layout()->disableLayout();
         $oGallery = new Application_Model_GalleryMapper();
         $oGalleryentry = $oGallery->find($this->_request->getParam('pk'), new Application_Model_Gallery());
-        var_dump($oGalleryentry);
-        die();
+        
         $this->view->entry = $oGalleryentry;
     }
 }
