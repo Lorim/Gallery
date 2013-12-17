@@ -6,6 +6,13 @@ class AdminController extends Zend_Controller_Action
     public function init()
     {
         /* Initialize action controller here */
+        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/datatables.js'));
+        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-editable.js'));
+        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/bootstrap-datepicker.de.js'));
+        $this->view->headScript()->appendFile( $this->view->baseUrl('/js/site.admin.js'));
+        
+        $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-editable.css'));
+        $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/datatables.css'));
     }
 
     public function commentsAction()
@@ -105,6 +112,15 @@ class AdminController extends Zend_Controller_Action
         }
         
         echo $this->view->json($aReturn);
+    }
+    
+    public function getpreviewpicAction() {
+        $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+        $oGallery = new Application_Model_GalleryMapper();
+        $oGalleryentry = $oGallery->find($this->_request->getParam('pk'), new Application_Model_Gallery());
+        
+        echo $this->view->json($oGalleryentry->getPictures());
     }
 }
 

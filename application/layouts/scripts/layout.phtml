@@ -1,7 +1,8 @@
 <?php
 $this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
-echo $this->doctype(); ?>
-
+echo $this->doctype(); 
+$this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
+?>
 <html lang="de">
 	<head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
