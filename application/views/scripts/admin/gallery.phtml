@@ -16,7 +16,7 @@
             printf("<td><a href='#' class='editable2' data-type='date' data-name='created' data-title='Erstellungsdatum' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->created);
             printf("<td><a href='#' class='editable2' data-type='text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->title);
             printf("<td><a href='#' class='editable2' data-type='select' data-name='path' data-title='Pfad' data-type='text' data-pk='%d' data-value='%s' data-source='/admin/getpaths'>%s</a></td>", $entry->id, $entry->path, $entry->path);
-            printf("<td><a href='#' class='editPreviewPicture' data-type='text' data-name='title' data-title='Titel' data-type='text' data-pk='%d'>%s</a></td>", $entry->id, $entry->title);
+            printf("<td><a data-toggle='modal' data-target='#previewModal' href='/admin/getpreviewpic/pk/%d'>%s</a></td>", $entry->id, $entry->title);
             printf("<td><a href='#' class='editable2' data-type='select' data-source='%s' data-name='active' data-value='%s' data-emptytext='inaktiv' data-title='Active' data-type='select' data-pk='%d'>%s</a></td>", '[{value: "1", text: "Aktiv"},{value: 0, text: "Inaktiv"}]', $entry->active,$entry->id,  $aActive[$entry->active]);
             echo "</tr>";
         }
@@ -48,4 +48,4 @@
 </table>
 <button id="save-btn2" class="btn btn-primary">Eintragen</button>
 
-<div id="dialog-form"></div>
+<div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

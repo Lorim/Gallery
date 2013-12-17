@@ -32,7 +32,7 @@ $(document).ready(function() {
         },
         source: '/list'
     });
-    
+
     $('#save-btn').click(function() {
         $('.new').editable('submit', {
             url: '/admin/addnews',
@@ -86,7 +86,7 @@ $(document).ready(function() {
                     $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
                     $('#save-btn').hide();
                     $(this).off('save.newuser');
-                    
+
                 } else if (data && data.errors) {
                     //server-side validation error, response like {"errors": {"username": "username already exist"} }
                     config.error.call(this, data.errors);
@@ -105,35 +105,48 @@ $(document).ready(function() {
             }
         });
     });
-    
-    $( ".editPreviewPicture" )
-	.click(function(event) {
-		event.preventDefault();
-		
-		$.ajax({
-			type: "POST",
-			url: '/admin/getpreviewpic/pk/'+$(this).data('pk')
-		}).done(function( msg) {
+
+    $(".editPreviewPicture")
+            .click(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/getpreviewpic/pk/' + $(this).data('pk')
+                }).done(function(msg) {
                     msg = 'foo';
-			$("#dialog-form").html(msg);
-		})
-		
-		$( "#dialog-form" ).dialog({
-			autoOpen: false,
-			height: 400,
-			width: 680,
-			modal: false,
-			buttons: {
-                   "Status wechseln": function() { window.location.href = $(this).find("a").attr("href");
-			   },
-                   "Daten übernehmen": function() { $( this ).find("form").submit();
-               },
-            	   "Schliessen": function() { $(this).dialog("close");
-               }
-			}
-		});
-		$( "#dialog-form" ).dialog( "open" );
-	});
-    
+                    $("#dialog-form").html(msg);
+                })
+
+                $("#dialog-form").dialog({
+                    autoOpen: false,
+                    height: 400,
+                    width: 680,
+                    modal: false,
+                    buttons: {
+                        "Status wechseln": function() {
+                            window.location.href = $(this).find("a").attr("href");
+                        },
+                        "Daten übernehmen": function() {
+                            $(this).find("form").submit();
+                        },
+                        "Schliessen": function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+                $("#dialog-form").dialog("open");
+            });
+    $(document).on('hidden', "#myModal", function() {
+        $("#modal").removeData("modal");
+    });
+    $(document).on('click', "a[data-toggle=modal]", function() {
+        var target = $(this).attr("href");
+        $.get(target, function(data) {
+            $("#previewModal").html(data);
+            $("#previewModal").modal("show");
+        });
+        return false;
+    });
 });
 

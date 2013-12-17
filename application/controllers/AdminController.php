@@ -96,7 +96,6 @@ class AdminController extends Zend_Controller_Action
             $oNews->save($oEntry);
         }  catch (Exception $e) {
             echo $this->view->json(array("success" => false));
-            //Zend_Debug::dump($e);
         }
         echo $this->view->json(array("success" => true, "id" => 1));
     }
@@ -116,11 +115,11 @@ class AdminController extends Zend_Controller_Action
     
     public function getpreviewpicAction() {
         $this->_helper->layout()->disableLayout();
-        $this->_helper->viewRenderer->setNoRender();
         $oGallery = new Application_Model_GalleryMapper();
         $oGalleryentry = $oGallery->find($this->_request->getParam('pk'), new Application_Model_Gallery());
-        
-        echo $this->view->json($oGalleryentry->getPictures());
+        var_dump($oGalleryentry);
+        die();
+        $this->view->entry = $oGalleryentry;
     }
 }
 

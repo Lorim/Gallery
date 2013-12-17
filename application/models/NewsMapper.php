@@ -108,15 +108,4 @@ class Application_Model_NewsMapper {
         }
         return $entries;
     }
-
-    public function findPictures($path)
-    {
-        $sPath = $news->getPath();
-        $aList = glob(APPLICATION_PATH.'/../public/images/'.$sPath."/*.jpg");
-        foreach($aList as $sPicture) {
-            //$aPictures[] = "/images/" . $sPath . "/" . basename($sPicture);
-            $aPictures[] = basename($sPicture);
-        }
-        return $aPictures;
-    }
 }

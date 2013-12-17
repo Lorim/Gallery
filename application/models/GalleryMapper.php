@@ -3,6 +3,7 @@
 class Application_Model_GalleryMapper {
 
     protected $_dbTable;
+    protected $_dbPreviewTable;
 
     public function setDbTable($dbTable) {
         if (is_string($dbTable)) {
@@ -22,6 +23,24 @@ class Application_Model_GalleryMapper {
         return $this->_dbTable;
     }
 
+    public function setDbPreviewTable($dbTable) {
+        if (is_string($dbTable)) {
+            $dbTable = new $dbTable();
+        }
+        if (!$dbTable instanceof Zend_Db_Table_Abstract) {
+            throw new Exception('Ungültiges Table Data Gateway angegeben');
+        }
+        $this->_dbPreviewTable = $dbTable;
+        return $this;
+    }
+    
+    public function getDbPreviewTable() {
+        if (null === $this->_dbPreviewTable) {
+            $this->setDbpreviewTable('Application_Model_DbTable_Gallerypreview');
+        }
+        return $this->_dbTable;
+    }
+    
     public function save(Application_Model_Gallery $news) {
 
         $data = array(
@@ -53,13 +72,14 @@ class Application_Model_GalleryMapper {
             return;
         }
         $row = $result->current();
-
+        
         $gallery->setId($row->id)
                 ->setCreated($row->created)
                 ->setTitle($row->title)
                 ->setPath($row->path)
-                ->setActive($row->active);
-
+                ->setActive($row->active)
+                ->setPreviews($this->findPreviews($row->id));
+        
         return $gallery;
     }
 
@@ -105,16 +125,18 @@ class Application_Model_GalleryMapper {
         return $entries;
     }
 
-    public function findPictures($path)
+    public function findPreviews($iGalleryid)
     {
-        $sPath = $news->getPath();
-        $aList = glob(APPLICATION_PATH.'/../public/images/'.$sPath."/*.jpg");
-        foreach($aList as $sPicture) {
-            //$aPictures[] = "/images/" . $sPath . "/" . basename($sPicture);
-            $aPictures[] = basename($sPicture);
-            Zend_Debug::dump($this->getThumb($sPicture));
+        $resultSet = $this->getDbPreviewTable()->fetchAll(
+                    $this->getDbPreviewTable()
+                        ->select()
+                        ->order("created DESC")
+                        ->where("active = " . $iGalleryid)
+                    );
+        $entries = array();
+        foreach ($resultSet as $row) {
+            $entries[] = $row;
         }
-        return $aPictures;
+        return $entries;
     }
-    
 }

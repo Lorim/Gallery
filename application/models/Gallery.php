@@ -7,6 +7,7 @@ class Application_Model_Gallery
     protected $_path;
     protected $_active;
     protected $_pictures;
+    protected $_previews;
  
     public function __construct(array $options = null)
     {
@@ -119,5 +120,15 @@ class Application_Model_Gallery
     {
         $sBasepath = APPLICATION_PATH . '/../public/images/*';
         return glob($sBasepath, GLOB_ONLYDIR);
+    }
+    
+    public function getPreviews()
+    {
+        return $this->_previews;
+    }
+    public function setPreviews($aPreview)
+    {
+        $this->_previews = $aPreview;
+        return $this;
     }
 }

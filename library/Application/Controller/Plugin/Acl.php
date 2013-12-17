@@ -31,15 +31,7 @@ class Application_Controller_Plugin_Acl extends Zend_Controller_Plugin_Abstract
         }
 
         if (! $acl->isAllowed($identity, $resource, $privilege)) {
-            var_dump($identity, $resource, $privilege);
-        	Zend_Controller_Action_HelperBroker::getStaticHelper('flashMessenger')->addMessage(
-				array(
-					'error' => 'PERMISSION_DENIED'
-				)
-			);
-            $this->view->message = 'Application error';
-            $request->setControllerName("error");
-            $request->setActionName("error");
+            throw new Zend_Controller_Action_Exception('Not found', 404);
         }
     }
 }
