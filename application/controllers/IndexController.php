@@ -25,6 +25,8 @@ class IndexController extends Zend_Controller_Action {
                 $mapper = new Application_Model_CommentMapper();
                 $mapper->save($comment);
                 $form->reset();
+                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+                $fm->addMessage('Dein Kommentar war erfolgreich. Allerdings muss er erst noch freigegeben werden.');
             }
             $this->view->commentsubmit = true;
         }
@@ -158,10 +160,12 @@ class IndexController extends Zend_Controller_Action {
                         ->addTo("admin@lonie.de")
                         ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
+                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
                 try {
                     $mail->send();
+                    $fm->addMessage('Deine Mail wurde erfolgreich versendet');
                 } catch (exception $ex) {
-                    Zend_Debug::dump($ex);
+                    $fm->addMessage('Es gab ein Problem beim versenden der Mail.<br>Bitte versuch es später noch einmal.');
                 }
             }
             $this->view->commentsubmit = true;

@@ -35,7 +35,10 @@ $(document).ready(function() {
     });
     
     $('.notifications').notify({
-        fadeOut: 'disabled',
+        fadeOut: {
+            enabled: true,
+            delay: 5000
+        },
         type: 'bangTidy'
     }).show();
 

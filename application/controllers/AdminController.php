@@ -15,8 +15,6 @@ class AdminController extends Zend_Controller_Action
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-editable.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-select.min.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/datatables.css'));
-        $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-        $fm->addMessage('Ein Test dies ist!');
     }
 
     public function commentsAction()
@@ -59,6 +57,8 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setActive($this->_request->getParam('active', 0));
             
             $oNews->save($oEntry);
+            $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+            $fm->addMessage('Die News wurde erstellt :)');
         }  catch (Exception $e) {
             echo $this->view->json(array("success" => false));
             //Zend_Debug::dump($e);
@@ -98,6 +98,7 @@ class AdminController extends Zend_Controller_Action
     public function addgalleryAction()
     {
         $this->_helper->layout()->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
         try{
             $oNews = new Application_Model_GalleryMapper();
             $oEntry = new Application_Model_Gallery();
@@ -107,6 +108,8 @@ class AdminController extends Zend_Controller_Action
             $oEntry->setActive($this->_request->getParam('active', 0));
             
             $oNews->save($oEntry);
+            $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+            $fm->addMessage('Die Gallerie wurde erstellt :) <br> Fehlen noch die Vorschaubilder.');
         }  catch (Exception $e) {
             echo $this->view->json(array("success" => false));
         }

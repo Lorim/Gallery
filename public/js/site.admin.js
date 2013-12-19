@@ -86,7 +86,7 @@ $(document).ready(function() {
                     $('#msg').addClass('alert-success').removeClass('alert-error').html(msg).show();
                     $('#save-btn').hide();
                     $(this).off('save.newuser');
-
+                    location.reload();
                 } else if (data && data.errors) {
                     //server-side validation error, response like {"errors": {"username": "username already exist"} }
                     config.error.call(this, data.errors);

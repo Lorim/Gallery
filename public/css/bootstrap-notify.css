@@ -29,6 +29,9 @@
   z-index: 9999;
   margin: 5px 0px;
 }
+.notifications a {
+    margin-left: 10px;
+}
 .alert-bangTidy {
   box-sizing: border-box;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
