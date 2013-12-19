@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     $('.datatable').dataTable({
-        "sPaginationType": "bs_normal"
+        "sPaginationType": "bs_normal",
+        "aaSorting": [[ 1, "desc" ]]
     });
     $('.datatable').each(function() {
         var datatable = $(this);

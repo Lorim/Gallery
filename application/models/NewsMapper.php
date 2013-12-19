@@ -66,8 +66,9 @@ class Application_Model_NewsMapper {
     }
 
     public function fetchAll() {
-        $resultSet = $this->getDbTable()->fetchAll();
-
+        $resultSet = $this->getDbTable()->fetchAll(
+                $this->getDbTable()->select()->order("created DESC")
+                );
         $entries = array();
         foreach ($resultSet as $row) {
             $entry = new Application_Model_News();
