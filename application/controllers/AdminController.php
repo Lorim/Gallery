@@ -92,6 +92,9 @@ class AdminController extends Zend_Controller_Action
         $oGallery = new Application_Model_GalleryMapper();
         $oGalleryentry = $oGallery->find($this->_request->getParam('pk'), new Application_Model_Gallery());
         $oGalleryentry->{$sField} = $sValue;
+        if($sField == 'active' && $sValue == "-1") {
+            $oGallery->delete($oGalleryentry);
+        }
         $oGallery->save($oGalleryentry);
     }
     

@@ -68,13 +68,17 @@ class Application_Model_GalleryMapper {
                     'pid' => $pid,
                     'picture' => $pic
                 );
+                try {
                 $this->getDbPreviewTable()->insert($data);
+                } catch (Exception $e) {
+                    Zend_Debug::dump($e);
+                }
             }
         }
     }
     
-    public function delete(Application_Model_Gallery $news) {
-        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $news->getId());
+    public function delete(Application_Model_Gallery $gallery) {
+        $where = $this->getDbTable()->getAdapter()->quoteInto('id = ?', $gallery->getId());
         $this->getDbTable()->delete($where);
     }
 

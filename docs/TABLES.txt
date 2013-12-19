@@ -41,5 +41,8 @@ CREATE TABLE `gallerypreview` (
   `gid` int(11) NOT NULL,
   `picture` varchar(255) NOT NULL,
   `pid` int(11) NOT NULL,
-  PRIMARY KEY (`gid`,`picture`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  KEY `gallery_preview_idx` (`gid`),
+  CONSTRAINT `gallery_preview` FOREIGN KEY (`gid`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8
