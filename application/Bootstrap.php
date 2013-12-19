@@ -148,6 +148,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/css/bootstrap-image-gallery.css',
                     '/css/owl.carousel.css',
                     '/css/owl.theme.css',
+                    '/css/bootstrap-notify.css',
                     '/css/site.css',
 
 		);
@@ -160,6 +161,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/jquery.blueimp-gallery.min.js',
                     '/js/jquery.dataTables.min.js',
                     '/js/owl.carousel.min.js',
+                    '/js/bootstrap-notify.js',
 				
 		);
 		foreach ($js as $file) {

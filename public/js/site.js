@@ -33,6 +33,11 @@ $(document).ready(function() {
         });
 
     });
+    
+    $('.notifications').notify({
+        fadeOut: 'disabled',
+        type: 'bangTidy'
+    }).show();
 
 });
 

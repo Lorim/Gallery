@@ -44,16 +44,30 @@ $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
 	    </div>
 	    
 	    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-		<div id="blueimp-gallery" class="blueimp-gallery">
-		    <div class="slides"></div>
-		    <h3 class="title"></h3>
-		    <!-- The placeholder for the description label: -->
-		    <p class="description"></p>
-		    <a class="prev">‹</a>
-		    <a class="next">›</a>
-		    <a class="close">×</a>
-		    <a class="play-pause"></a>
-		    <ol class="indicator"></ol>
-		</div>
+            <div id="blueimp-gallery" class="blueimp-gallery">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <!-- The placeholder for the description label: -->
+                <p class="description"></p>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+            
+            <?php
+            $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+            $messages = array_merge($fm->getMessages(),
+            $fm->getCurrentMessages());
+            $fm->clearCurrentMessages();
+            if(count($messages)) {
+                foreach($messages as $msg) {
+                    ?>
+                        <div class='notifications top-right' data-message='<?php echo $msg;?>'></div>
+                    <?php
+                }
+            }
+            ?>
 	</body>
 </html>

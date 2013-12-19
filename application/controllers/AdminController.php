@@ -15,6 +15,8 @@ class AdminController extends Zend_Controller_Action
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-editable.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/bootstrap-select.min.css'));
         $this->view->headLink()->appendStylesheet( $this->view->baseUrl('/css/datatables.css'));
+        $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+        $fm->addMessage('Ein Test dies ist!');
     }
 
     public function commentsAction()
