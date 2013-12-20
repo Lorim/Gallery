@@ -1,8 +1,7 @@
 <table class="datatable table table-striped table-bordered">
 	<thead>
 		<tr>
-			<th>Newsdate</th>
-			<th>Created</th>
+			<th>Datum</th>
 			<th>Name</th>
 			<th>Kommentar</th>
 			<th>Admin</th>
@@ -38,7 +37,6 @@ foreach($this->entries as $entry) {
 		echo "<tr class='danger'>";
 		$classdisable = "disabled";
 	}
-	printf("<td>%s</td>",$entry->newsid);
 	printf("<td>%s</td>",$entry->created);
 	printf("<td>%s</td>",$entry->name);
 	printf("<td>%s</td>",$entry->comment);
