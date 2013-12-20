@@ -9,14 +9,48 @@
 			<resource>index</resource>
 			<privilege>news</privilege>
 		</news>
-		<gallery>
+                <gallery>
 			<label>Gallery</label>
-			<controller>index</controller>
-                        <route>gallery</route>
-			<action>gallery</action>
+			<controller></controller>
+                        <route>default</route>
 			<resource>index</resource>
-			<privilege>news</privilege>
-		</gallery>
+			<privilege>gallery</privilege>
+			<pages>
+                            <Portrait>
+                                    <label>Portrait</label>
+                                    <controller>index</controller>
+                                    <route>gallery</route>
+                                    <action>gallery</action>
+                                    <params>
+                                        <tag>Portrait</tag>
+                                    </params>
+                                    <resource>index</resource>
+                                    <privilege>gallery</privilege>
+                            </Portrait>
+                            <Themen>
+                                    <label>Themen</label>
+                                    <controller>index</controller>
+                                    <route>gallery</route>
+                                    <action>gallery</action>
+                                    <params>
+                                        <tag>Themen</tag>
+                                    </params>
+                                    <resource>index</resource>
+                                    <privilege>gallery</privilege>
+                            </Themen>
+                            <Landscape>
+                                    <label>Konzerte - Places - Rockabilly</label>
+                                    <controller>index</controller>
+                                    <route>gallery</route>
+                                    <action>gallery</action>
+                                    <params>
+                                        <tag>Diverses</tag>
+                                    </params>
+                                    <resource>index</resource>
+                                    <privilege>gallery</privilege>
+                            </Landscape>
+                        </pages>
+                </gallery>
 		<kontakt>
 			<label>Kontakt</label>
 			<controller>index</controller>

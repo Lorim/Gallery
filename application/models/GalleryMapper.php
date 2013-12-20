@@ -41,15 +41,16 @@ class Application_Model_GalleryMapper {
         return $this->_dbPreviewTable;
     }
     
-    public function save(Application_Model_Gallery $news) {
+    public function save(Application_Model_Gallery $gallery) {
 
         $data = array(
-            'created' => $news->getCreated(),
-            'title' => $news->getTitle(),
-            'path' => $news->getPath(),
-            'active' => $news->getActive()
+            'created' => $gallery->getCreated(),
+            'title' => $gallery->getTitle(),
+            'path' => $gallery->getPath(),
+            'active' => $gallery->getActive(),
+            'tag' => $gallery->getTag()
         );
-        if (null === ($id = $news->getId())) {
+        if (null === ($id = $gallery->getId())) {
             unset($data['id']);
             try {
                 $this->getDbTable()->insert($data);
@@ -59,12 +60,12 @@ class Application_Model_GalleryMapper {
         } else {
             $this->getDbTable()->update($data, array('id = ?' => $id));
             $this->getDbPreviewTable()->delete(
-                    $this->getDbPreviewTable()->getAdapter()->quoteInto('gid = ?', $news->getId())
+                    $this->getDbPreviewTable()->getAdapter()->quoteInto('gid = ?', $gallery->getId())
                     );
-            foreach($news->getPreviews() as $pid => $pic) {
+            foreach($gallery->getPreviews() as $pid => $pic) {
                 if($pic == "") continue;
                 $data = array(
-                    'gid' => $news->getId(),
+                    'gid' => $gallery->getId(),
                     'pid' => $pid,
                     'picture' => $pic
                 );
@@ -93,6 +94,7 @@ class Application_Model_GalleryMapper {
                 ->setCreated($row->created)
                 ->setTitle($row->title)
                 ->setPath($row->path)
+                ->setTag($row->tag)
                 ->setActive($row->active)
                 ->setPreviews($this->findPreviews($row->id));
         
@@ -109,6 +111,7 @@ class Application_Model_GalleryMapper {
                     ->setCreated($row->created)
                     ->setTitle($row->title)
                     ->setPath($row->path)
+                    ->setTag($row->tag)
                     ->setActive($row->active)
                     ->setPreviews($this->findPreviews($row->id));
                 $entries[] = $entry;
@@ -116,18 +119,42 @@ class Application_Model_GalleryMapper {
         return $entries;
     }
 
-    public function findGalleries() {
+    public function findGalleries($tag = NULL) {
+        $where = "";
+        if($tag !== NULL) {
+            $where = $this->getDbTable()->getAdapter()->quoteInto('tag = ?', $tag);
+        }
+        try{
         if (Zend_Auth::getInstance()->hasIdentity()) {
+            if($tag !== NULL) {
             $resultSet = $this->getDbTable()->fetchAll(
+                    $this->getDbTable()->select()->order("created DESC")->where($where)
+                    );
+            } else {
+                $resultSet = $this->getDbTable()->fetchAll(
                     $this->getDbTable()->select()->order("created DESC")
                     );
+            }
         } else {
-            $resultSet = $this->getDbTable()->fetchAll(
+            if($tag !== NULL) {
+                $resultSet = $this->getDbTable()->fetchAll(
                     $this->getDbTable()
                         ->select()
                         ->order("created DESC")
                         ->where("active = 1")
+                        ->where($where)
                     );
+            } else {
+                $resultSet = $this->getDbTable()->fetchAll(
+                    $this->getDbTable()
+                        ->select()
+                        ->order("created DESC")
+                        ->where("active = 1")
+                    );    
+            }
+        }
+        } catch(Exception $e) {
+            Zend_Debug::dump($e);
         }
         $entries = array();
         foreach ($resultSet as $row) {
@@ -137,6 +164,7 @@ class Application_Model_GalleryMapper {
                     ->setTitle($row->title)
                     ->setPath($row->path)
                     ->setActive($row->active)
+                    ->setTag($row->tag)
                     ->setPreviews($this->findPreviews($row->id));
             $entries[] = $entry;
         }

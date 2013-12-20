@@ -6,6 +6,7 @@ class Application_Model_Gallery
     protected $_title;
     protected $_path;
     protected $_active;
+    protected $_tag;
     protected $_pictures;
     protected $_previews;
  
@@ -89,6 +90,18 @@ class Application_Model_Gallery
     {
         return $this->_active;
     }
+    
+    public function setTag($tag)
+    {
+        $this->_tag = $tag;
+        return $this;
+    }
+    
+    public function getTag()
+    {
+        return $this->_tag;
+    }
+    
     public function setPath($path)
     {
     	$this->_path = (string) $path;

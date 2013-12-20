@@ -42,12 +42,13 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 		$router->addRoute(
                     'gallery',
                     new Zend_Controller_Router_Route(
-                        'gallery/:id', array(
+                        'gallery/:tag/:id', array(
                             'controller' => 'index',
                             'action' => 'gallery',
-                            'id' => ''
+                            'id' => '',
+                            'tag' => ''
                         ),
-                        array('id' => '\d+')
+                        array('id' => '\d+', 'tag' => '\w+')
                     )
                 );
                 $router->addRoute(

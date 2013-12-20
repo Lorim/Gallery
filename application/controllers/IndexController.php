@@ -70,11 +70,15 @@ class IndexController extends Zend_Controller_Action {
     public function galleryAction() {
         $oGallery = new Application_Model_GalleryMapper();
         $iGalleryid = $this->_request->getParam('id');
+        $sGalleryTag = $this->_request->getParam('tag');
         if($iGalleryid) {
-            $this->_helper->viewRenderer->setRender('galleryid'); 
-            $this->view->entry = $oGallery->find($iGalleryid, new Application_Model_Gallery);
+            $this->_helper->viewRenderer->setRender('galleryid');
+            $oGalleryEntry = $oGallery->find($iGalleryid, new Application_Model_Gallery);
+            $this->view->entry = $oGalleryEntry;
+            $this->_helper->layout()->getView()->headTitle($oGalleryEntry->getTitle(), 
+                Zend_View_Helper_Placeholder_Container_Abstract::SET);
         } else {
-            $this->view->entry = $oGallery->findGalleries();
+            $this->view->entry = $oGallery->findGalleries($sGalleryTag);
         }
     }
 
