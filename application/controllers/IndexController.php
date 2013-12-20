@@ -26,7 +26,7 @@ class IndexController extends Zend_Controller_Action {
                 $mapper->save($comment);
                 $form->reset();
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-                $fm->addMessage('Dein Kommentar war erfolgreich. Allerdings muss er erst noch freigegeben werden.');
+                $fm->addMessage('Dein Kommentar war erfolgreich. Er wird<br>angezeigt sobald er freigegeben wurde.');
             }
             $this->view->commentsubmit = true;
         }
@@ -55,6 +55,8 @@ class IndexController extends Zend_Controller_Action {
                 $mapper = new Application_Model_CommentMapper();
                 $mapper->save($comment);
                 $form->reset();
+                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+                $fm->addMessage('Dein Kommentar war erfolgreich. Er wird<br>angezeigt sobald er freigegeben wurde.');
             }
             $this->view->commentsubmit = true;
         }
