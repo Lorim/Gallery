@@ -55,11 +55,11 @@
                                         $classenable = "disabled";
                                         $classdisable = "";
                                         if ($comment->active == 0 && Zend_Auth::getInstance()->hasIdentity()) {
-                                            $class = "alert-danger";
+                                            $class = "inactive";
                                             $classenable = "";
                                             $classdisable = "disabled";
                                         } elseif (Zend_Auth::getInstance()->hasIdentity()) {
-                                            $class = "alert-success";
+                                            $class = "";
                                         }
                                         ?>
                                             <div class="thisbox">
