@@ -32,8 +32,9 @@ CREATE TABLE `gallery` (
   `title` varchar(255) NOT NULL,
   `path` varchar(100) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
+  `tag` varchar(30) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8
 
 PREVIEW Table
 
