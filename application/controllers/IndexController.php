@@ -147,7 +147,7 @@ class IndexController extends Zend_Controller_Action {
                 //die();
                 $mail = new Zend_Mail('UTF-8');
                 $mail->setFrom("gallery@se519.de")
-                        ->addTo("admin@lonie.de")
+                        ->addTo("steffen@se519.de")
                         ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();
