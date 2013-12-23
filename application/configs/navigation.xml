@@ -4,8 +4,8 @@
 		<news>
 			<label>News</label>
 			<controller>index</controller>
-                        <route>default</route>
-			<action>index</action>
+                        <route>news</route>
+			<action>news</action>
 			<resource>index</resource>
 			<privilege>news</privilege>
 		</news>

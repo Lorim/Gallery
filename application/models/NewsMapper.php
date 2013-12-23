@@ -86,7 +86,10 @@ class Application_Model_NewsMapper {
     public function findNews() {
         if (Zend_Auth::getInstance()->hasIdentity()) {
             $resultSet = $this->getDbTable()->fetchAll(
-                    $this->getDbTable()->select()->order("created DESC")
+                    $this->getDbTable()
+                        ->select()
+                        ->order("created DESC")
+                        ->where("id > 0")
                     );
         } else {
             $resultSet = $this->getDbTable()->fetchAll(

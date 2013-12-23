@@ -7,44 +7,28 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        
         $oNews = new Application_Model_NewsMapper();
-        $paginator = Zend_Paginator::factory($oNews->findNews());
-        $paginator->setCurrentPageNumber($this->_getParam('page'));
-        $paginator->setItemCountPerPage(2);
         
-        $this->view->news = $paginator;
-        
-        $form = new Application_Form_Comment();
-        $form->getElement('active')->setValue(0);
-        $request = $this->getRequest();
-        
-        if ($request->isPost()) {
-            if ($form->isValid($request->getParams())) {
-                $comment = new Application_Model_Comment($form->getValues());
-                $mapper = new Application_Model_CommentMapper();
-                $mapper->save($comment);
-                $form->reset();
-                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
-                $fm->addMessage('Dein Kommentar war erfolgreich. Er wird<br>angezeigt sobald er freigegeben wurde.');
-            }
-            $this->view->commentsubmit = true;
-        }
-        
-        $guestbook = new Application_Model_CommentMapper();
-        $this->view->comments = $guestbook;
-        $this->view->form = $form;
+        $this->view->news = $oNewsEntry = $oNews->find(0, new Application_Model_News());
     }
     
     public function newsAction() {
         $oNews = new Application_Model_NewsMapper();
         $oEntry = new Application_Model_News();
-        $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
-        
-        $this->_helper->layout()->getView()->headTitle($oNewsEntry->getTitle(), 
-                Zend_View_Helper_Placeholder_Container_Abstract::SET);
-        
-        $this->view->news = $oNewsEntry;
+        $iNewsid = $this->_getParam('id');
+        if($iNewsid) {
+            $this->_helper->viewRenderer->setRender('newsid');
+            $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
+            $this->_helper->layout()->getView()->headTitle($oNewsEntry->getTitle(), 
+                    Zend_View_Helper_Placeholder_Container_Abstract::SET);
+            $this->view->news = $oNewsEntry;
+        } else {
+            $paginator = Zend_Paginator::factory($oNews->findNews());
+            $paginator->setCurrentPageNumber($this->_getParam('page'));
+            $paginator->setItemCountPerPage(2);
+
+            $this->view->news = $paginator;
+        }
 
         $form = new Application_Form_Comment();
         $form->getElement('active')->setValue(0);
