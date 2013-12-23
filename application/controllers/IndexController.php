@@ -137,11 +137,8 @@ class IndexController extends Zend_Controller_Action {
             if ($form->isValid($request->getParams())) {
                 //$form->reset();
                 $view = new Zend_View();
-                $view->setScriptPath(APPLICATION_PATH . "/views/mail");
-
-
+                $view->setScriptPath(APPLICATION_PATH . "/views/scripts/mail");
                 $view->form = $form->getValues();
-
                 $html = $view->render('kontakt.phtml');
                 //Zend_Debug::dump($view);
                 //die();
