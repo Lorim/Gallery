@@ -20,7 +20,7 @@ public function init()
             'label'      => 'Passwort:',
             'required'   => true,
             'validators' => array(
-                array('validator' => 'StringLength', 'options' => array(0, 5))
+                array('validator' => 'StringLength', 'options' => array(0, 15))
                 )
         ));
 
