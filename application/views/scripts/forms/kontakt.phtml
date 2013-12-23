@@ -6,7 +6,7 @@
   
   <div class="form-group">
     <label class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-3 <?php echo $this->form->getElement('name')->hasErrors() ? "has-error": "";?>">
+    <div class="col-sm-5 <?php echo $this->form->getElement('name')->hasErrors() ? "has-error": "";?>">
 		<input type="text" class="form-control" id="name" name="name" 
 			placeholder="Max Mustermann" 
 			value="<?php echo $this->form->getElement('name')->getValue()?>">
@@ -14,7 +14,7 @@
   </div>
   <div class="form-group">
     <label for="comment" class="col-sm-2 control-label">eMail</label>
-  	<div class="col-sm-3 <?php echo $this->form->getElement('mail')->hasErrors() ? "has-error": "";?>">
+  	<div class="col-sm-5 <?php echo $this->form->getElement('mail')->hasErrors() ? "has-error": "";?>">
 		<input type="email" class="form-control" id="mail" name="mail" 
 			placeholder="eMail" 
 			value="<?php echo $this->form->getElement('mail')->getValue()?>">
@@ -22,20 +22,20 @@
   </div>
   <div class="form-group">
     <label for="comment" class="col-sm-2 control-label">Kommentar</label>
-    <div class="col-sm-3 <?php echo $this->form->getElement('comment')->hasErrors() ? "has-error": "";?>">
+    <div class="col-sm-5 <?php echo $this->form->getElement('comment')->hasErrors() ? "has-error": "";?>">
       <textarea id="comment" name="comment" class="form-control" rows="3" 
       	placeholder="Hier kannst du dich auslassen"><?php echo $this->form->getElement('comment')->getValue()?></textarea>
     </div>
   </div>
   <div class="form-group">
     <label for="comment" class="col-sm-2 control-label"></label>
-  	<div class="col-sm-3">
+  	<div class="col-sm-5">
 		<?php echo $this->form->getElement('captcha'); ?>
     </div>
   </div>
   <div class="form-group">
     <label for="" class="col-sm-2 control-label"></label>
-    <div class="col-sm-3">
+    <div class="col-sm-5">
       <button type="submit" class="btn btn-success btn-block"><?php echo $this->form->getElement('submit')->getLabel(); ?></button>
     </div>
   </div>

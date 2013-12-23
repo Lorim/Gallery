@@ -147,7 +147,7 @@ class IndexController extends Zend_Controller_Action {
                 //die();
                 $mail = new Zend_Mail('UTF-8');
                 $mail->setFrom("gallery@se519.de")
-                        ->addTo("admin@lonie.de")
+                        ->addTo("steffen@se519.de")
                         ->setSubject('Neue Kontaktanfrage von ' . $form->getValue('name'));
                 $mail->setBodyHtml($html);
                 $fm = new Zend_Controller_Action_Helper_FlashMessenger();
@@ -157,6 +157,9 @@ class IndexController extends Zend_Controller_Action {
                 } catch (exception $ex) {
                     $fm->addMessage('Es gab ein Problem beim versenden der Mail.<br>Bitte versuch es später noch einmal.');
                 }
+            } else {
+                $fm = new Zend_Controller_Action_Helper_FlashMessenger();
+                $fm->addMessage('In deinen Daten steckt noch ein Fehler. <br>Kontrolliere das rot markierte Feld, korrigiere es und versuchs nochmal.');
             }
             $this->view->commentsubmit = true;
         }

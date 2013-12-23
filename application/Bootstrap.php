@@ -161,7 +161,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                     '/js/bootstrap.js',
                     '/js/jquery.blueimp-gallery.min.js',
                     '/js/jquery.dataTables.min.js',
-                    '/js/owl.carousel.min.js',
+                    '/js/owl.carousel.js',
                     '/js/bootstrap-notify.js',
 				
 		);
