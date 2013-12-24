@@ -28,7 +28,7 @@ $(document).ready(function() {
             pagination: true,
             goToFirstSpeed : 2000,
             singleItem : true,
-            autoHeight : true,
+            autoHeight : false,
             transitionStyle:"fadeUp"
         });
 
