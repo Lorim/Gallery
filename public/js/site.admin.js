@@ -2,7 +2,11 @@ $(document).ready(function() {
 
     $('.datatable').dataTable({
         "sPaginationType": "bs_normal",
-        "aaSorting": [[ 1, "desc" ]]
+        "aaSorting": [[ 1, "desc" ]],
+        "bStateSave": true,
+        "fnCreatedRow": function( nRow, aData, iDataIndex ) {
+            editable();
+          }
     });
     $('.datatable').each(function() {
         var datatable = $(this);
@@ -15,24 +19,27 @@ $(document).ready(function() {
         length_sel.addClass('form-control input-sm');
     });
 
-    $('.editable').editable({
-        type: $(this).data("type"),
-        url: '/admin/updatenews',
-        placement: 'auto',
-        datepicker: {
-            language: 'de'
-        },
-        source: '/list'
-    });
-    $('.editable2').editable({
-        type: $(this).data("type"),
-        url: '/admin/updategallery',
-        placement: 'auto',
-        datepicker: {
-            language: 'de'
-        },
-        source: '/list'
-    });
+    function editable() {
+        $('.editable2').editable({
+            type: $(this).data("type"),
+            url: '/admin/updategallery',
+            placement: 'auto',
+            datepicker: {
+                language: 'de'
+            },
+            source: '/list'
+        });
+        $('.editable').editable({
+            type: $(this).data("type"),
+            url: '/admin/updatenews',
+            placement: 'auto',
+            datepicker: {
+                language: 'de'
+            },
+            source: '/list'
+        });
+    }
+    editable();
 
     $('#save-btn').click(function() {
         $('.new').editable('submit', {
