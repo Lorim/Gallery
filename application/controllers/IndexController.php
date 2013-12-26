@@ -21,6 +21,7 @@ class IndexController extends Zend_Controller_Action {
         $oEntry = new Application_Model_News();
         $layout = $this->_helper->layout();
         $iNewsid = $this->_getParam('id');
+        $basePath = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost();
         if($iNewsid) {
             $this->_helper->viewRenderer->setRender('newsid');
             $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
@@ -28,13 +29,20 @@ class IndexController extends Zend_Controller_Action {
                     Zend_View_Helper_Placeholder_Container_Abstract::SET);
             $this->view->news = $oNewsEntry;
             $layout->teaser = $oNewsEntry->teaser;
+            foreach($oNewsEntry->pictures as $pic) {
+                $aPictures[] = $basePath . $pic['original'];
+            }
+            $layout->ogPictures = $aPictures;
         } else {
             $paginator = Zend_Paginator::factory($oNews->findNews());
             $paginator->setCurrentPageNumber($this->_getParam('page'));
             $paginator->setItemCountPerPage(2);
             $this->view->news = $paginator;
-            
             $layout->teaser = $paginator->getItem(1)->teaser;
+            foreach($paginator->getItem(1)->pictures as $aPic) {
+                $aPictures[] = $basePath . $aPic['original'];
+            }
+            $layout->ogPictures = $aPictures;
         }
 
         $form = new Application_Form_Comment();
