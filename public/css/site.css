@@ -101,16 +101,5 @@ li.thisbox {
     margin-right: auto;
     text-align: center;
 }
-@media(min-width:1200px){
-    .thumbnails .carousel  {height:350px}
-}
-@media(min-width:992px){
-    .thumbnails .carousel {height:350px}
-}
-@media(min-width:768px){
-    .thumbnails .carousel {height:350px}
-}
-@media(max-width:767px){
-    .thumbnails .carousel {height:100%}
-}
+
 
