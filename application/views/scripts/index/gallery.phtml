@@ -9,7 +9,9 @@
                         <div class="body" style="min-height: 200px;">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
-                                    <?php foreach ($this->entry as $entry) {
+                                    <?php 
+                                    $i = 0;
+                                    foreach ($this->entry as $entry) {
                                         if(!count($entry->previews)) continue;
                                         $gallerypath = $this->url(array(
                                                                 'controller' => 'index',
@@ -17,9 +19,9 @@
                                                                 'id' => $entry->id
                                                             ), 'gallery');
                                         ?>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                            <div class="thumbnail" style="height: 350px">
-                                                <a href="<?php echo $gallerypath; ?>" class="caption">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 thumbnails">
+                                            <div class="thumbnail">
+                                                <a href="<?php echo $gallerypath; ?>" class="caption center-block">
                                                     <strong><?php echo $entry->title; ?></strong>
                                                 </a>
                                                 <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,8000); ?>">
@@ -35,34 +37,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                    <?php 
+                                    if($i%3) {
+                                        
+                                    }
+                                    } ?>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
                     </article>
                 </div>
             </div>
     </div>
-    <div class="col-lg-3 visible-lg">
-        <article class="thisbox">
-            <div class="head">
-                <span>Profil</span>
-            </div>
-            <div class="body">
-                <p>
-                   <!-- <img class="img-thumbnail " alt="" src="/img/profil2.jpg"/> -->
-                </p>
-                <p class="text-muted">
-                    Geboren und aufgewachsen in der kleinen Stadt Saalfeld, begann ich 2004 mir meine erste Kamera zu kaufen und zu fotografieren.
-Ausgerüstet mit einer kleinen digital Kamera und einer Spiegelreflexkamera zog ich los. 
-Doch bald reichte das knipsen von Gegenständen und einigen verschiedenen Landschaften nicht mehr und ich begann mich im Internet und Büchern über Kameras und techniken der Fotografie zu informieren. 
-Dann kam ich durch einen Freund das erste mal in berührung mit der Portraitfotografie, die mich so sehr begeistert hat, das ich bis heute dabei geblieben bin.
-Wieder half mir das Internet bei der auswahl der Technik und den umgang mit dem Thema.
-Da ich das alles intensiv nebenbei mache, bin ich zeitlich oft sehr eingespannt.
-Ich besitze auch kein eigenes studio, was aber kein problem ist.
-Ich schätze die Freiheit in die Natur und Stadt zu gehen, die herausforderung das licht zu nutzen oder es immerwieder neu zu gestalten, um immer wieder neues zu entdeckt
-                </p>
-            </div>
-        </article>
-    </div>
+    <?php
+    echo $this->render('widgets/profile.phtml');
+    ?>
 </div>

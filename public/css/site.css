@@ -95,3 +95,22 @@ li.thisbox {
 .head a {
     color: #777777;
 }
+.thumbnail a strong {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+@media(min-width:1200px){
+    .thumbnails .carousel  {height:320px}
+}
+@media(min-width:992px){
+    .thumbnails .carousel {height:350px}
+}
+@media(min-width:768px){
+    .thumbnails .carousel {height:350px}
+}
+@media(max-width:767px){
+    .thumbnails .carousel {height:215px}
+}
+

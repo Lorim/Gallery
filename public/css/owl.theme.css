@@ -6,6 +6,9 @@
 .owl-theme .owl-controls{
 	margin-top: 10px;
 	text-align: center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
 }
 
 /* Styling Next and Prev buttons */
