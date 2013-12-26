@@ -94,6 +94,16 @@ $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
                     <?php
                 }
             }
+            
             ?>
+                        <script>
+                        $.preload( 
+                                <?php
+                                foreach($this->layout()->aPreload as $sPic) {
+                                    echo "'",$sPic,"',";
+                                }
+                                ?>
+                          );
+                        </script>
 	</body>
 </html>

@@ -11,12 +11,14 @@ class IndexController extends Zend_Controller_Action {
                 '://' . 
                 $this->getRequest()->getHttpHost() .
                 $this->getRequest()->getRequestUri();
+        $this->_helper->layout()->aPreload = array();
     }
 
     public function indexAction() {
         $oNews = new Application_Model_NewsMapper();
         
-        $this->view->news = $oNewsEntry = $oNews->find(0, new Application_Model_News());
+        $oNewsEntry = $oNews->find(0, new Application_Model_News());
+        $this->view->news = $oNewsEntry;
         $layout = $this->_helper->layout();
         $layout->teaser = $oNewsEntry->getTeaser();
     }
@@ -27,6 +29,7 @@ class IndexController extends Zend_Controller_Action {
         $layout = $this->_helper->layout();
         $iNewsid = $this->_getParam('id');
         $basePath = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost();
+        $aPreload = array();
         if($iNewsid) {
             $this->_helper->viewRenderer->setRender('newsid');
             $oNewsEntry = $oNews->find($this->_getParam('id'), $oEntry);
@@ -36,6 +39,7 @@ class IndexController extends Zend_Controller_Action {
             $layout->teaser = $oNewsEntry->teaser;
             foreach($oNewsEntry->pictures as $aPic) {
                 $aPictures[] = $basePath . $aPic['original'];
+                $aPreload[] = $aPic['original'];
             }
             $layout->ogPictures = $aPictures;
         } else {
@@ -46,10 +50,13 @@ class IndexController extends Zend_Controller_Action {
             $layout->teaser = $paginator->getItem(1)->teaser;
             foreach($paginator->getItem(1)->pictures as $aPic) {
                 $aPictures[] = $basePath . $aPic['original'];
+                $aPreload[] = $aPic['original'];
             }
             $layout->ogPictures = $aPictures;
         }
-
+        
+        $this->_helper->layout()->aPreload = $aPreload;
+        
         $form = new Application_Form_Comment();
         $form->getElement('active')->setValue(0);
         $request = $this->getRequest();

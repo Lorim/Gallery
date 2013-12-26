@@ -144,6 +144,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
             '/js/jquery.dataTables.min.js',
             '/js/owl.carousel.js',
             '/js/bootstrap-notify.js',
+            '/js/jquery.preload.js',
         );
         foreach ($js as $file) {
             $view->headScript()->appendFile($view->baseUrl($file));
