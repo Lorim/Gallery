@@ -24,6 +24,7 @@ body {
 .thisbox p {
     text-align: justify;
     padding: 0 16px;
+    overflow: hidden;
 }
 
 .thisbox footer {
