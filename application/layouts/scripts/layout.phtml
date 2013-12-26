@@ -10,13 +10,15 @@ $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
 	<?php echo $this->headTitle(); ?>
 	<?php echo $this->headLink(); ?>
 	<?php echo $this->headScript(); ?>
-        <meta property="og:type"   content="website" />
+        <meta property="og:type"   content="article" />
         <meta property="og:title"  content="Steffen Erdmann" />
         <?php
         if(isset($this->layout()->teaser)) {
             printf('<meta property="og:description" content="%s" />', $this->layout()->teaser);
         }
-        //Zend_Debug::dump();
+        if(isset($this->layout()->ogurl)) {
+            printf('<meta property="og:url" content="%s" />', $this->layout()->ogurl);
+        }
         if(isset($this->layout()->ogPictures)) {
             foreach($this->layout()->ogPictures as $aPic) {
                 printf("<meta property='og:image' content='%s' />\n", $aPic);
