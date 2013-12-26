@@ -72,6 +72,7 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function galleryAction() {
+        $basePath = $this->getRequest()->getScheme() . '://' . $this->getRequest()->getHttpHost();
         $oGallery = new Application_Model_GalleryMapper();
         $iGalleryid = $this->_request->getParam('id');
         $sGalleryTag = $this->_request->getParam('tag');
@@ -81,6 +82,10 @@ class IndexController extends Zend_Controller_Action {
             $this->view->entry = $oGalleryEntry;
             $this->_helper->layout()->getView()->headTitle($oGalleryEntry->getTitle(), 
                 Zend_View_Helper_Placeholder_Container_Abstract::SET);
+            foreach($oGalleryEntry->pictures as $aPic) {
+                $aPictures[] = $basePath . $aPic['original'];
+            }
+            $this->_helper->layout()->ogPictures = $aPictures;
         } else {
             $this->view->entry = $oGallery->findGalleries($sGalleryTag);
         }
