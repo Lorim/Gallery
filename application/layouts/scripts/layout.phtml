@@ -4,12 +4,19 @@ echo $this->doctype();
 $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
 ?>
 <html lang="de">
-	<head>
+	<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<?php echo $this->headMeta(); ?>
 	<?php echo $this->headTitle(); ?>
 	<?php echo $this->headLink(); ?>
 	<?php echo $this->headScript(); ?>
+        <meta property="og:type"   content="website" />
+        <meta property="og:title"  content="Steffen Erdmann" />
+        <?php
+        if(isset($this->layout()->teaser)) {
+            printf('<meta property="og:description" content="%s" />', $this->layout()->teaser);
+        }
+        ?>
        <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

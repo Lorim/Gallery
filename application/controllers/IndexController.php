@@ -4,17 +4,22 @@ class IndexController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
+        $this->_helper->layout()->getView()->headTitle("Steffen Erdmann", 
+                    Zend_View_Helper_Placeholder_Container_Abstract::SET);
     }
 
     public function indexAction() {
         $oNews = new Application_Model_NewsMapper();
         
         $this->view->news = $oNewsEntry = $oNews->find(0, new Application_Model_News());
+        $layout = $this->_helper->layout();
+        $layout->teaser = $oNewsEntry->getTeaser();
     }
     
     public function newsAction() {
         $oNews = new Application_Model_NewsMapper();
         $oEntry = new Application_Model_News();
+        $layout = $this->_helper->layout();
         $iNewsid = $this->_getParam('id');
         if($iNewsid) {
             $this->_helper->viewRenderer->setRender('newsid');
@@ -22,12 +27,14 @@ class IndexController extends Zend_Controller_Action {
             $this->_helper->layout()->getView()->headTitle($oNewsEntry->getTitle(), 
                     Zend_View_Helper_Placeholder_Container_Abstract::SET);
             $this->view->news = $oNewsEntry;
+            $layout->teaser = $oNewsEntry->teaser;
         } else {
             $paginator = Zend_Paginator::factory($oNews->findNews());
             $paginator->setCurrentPageNumber($this->_getParam('page'));
             $paginator->setItemCountPerPage(2);
-
             $this->view->news = $paginator;
+            
+            $layout->teaser = $paginator->getItem(1)->teaser;
         }
 
         $form = new Application_Form_Comment();
