@@ -34,8 +34,8 @@ class IndexController extends Zend_Controller_Action {
                     Zend_View_Helper_Placeholder_Container_Abstract::SET);
             $this->view->news = $oNewsEntry;
             $layout->teaser = $oNewsEntry->teaser;
-            foreach($oNewsEntry->pictures as $pic) {
-                $aPictures[] = $basePath . $pic['original'];
+            foreach($oNewsEntry->pictures as $aPic) {
+                $aPictures[] = $basePath . $aPic['original'];
             }
             $layout->ogPictures = $aPictures;
         } else {
