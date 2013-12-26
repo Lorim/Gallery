@@ -21,6 +21,8 @@ $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
         }
         if(isset($this->layout()->ogPictures)) {
             foreach($this->layout()->ogPictures as $aPic) {
+                list($width, $height) = getimagesize($aPic);
+                if($width < 200 || $height < 200) continue;
                 printf("<meta property='og:image' content='%s' />\n", $aPic);
             }
         }
