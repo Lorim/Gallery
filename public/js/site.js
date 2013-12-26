@@ -17,9 +17,8 @@ $(document).ready(function() {
         blueimp.Gallery(links, options);
     });
     $('.carousel').each(function() {
-        el = $(this);
-        el.owlCarousel({
-            autoPlay : el.data('interval'),
+        $(this).owlCarousel({
+            autoPlay : $(this).data('interval'),
             stopOnHover : true,
             navigation:false,
             lazyLoad : true,
@@ -28,7 +27,7 @@ $(document).ready(function() {
             pagination: true,
             goToFirstSpeed : 2000,
             singleItem : true,
-            autoHeight : false,
+            autoHeight : $(this).data('autoheight'),
             transitionStyle:"fadeUp"
         });
 

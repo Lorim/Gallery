@@ -24,7 +24,7 @@
                                                 <a href="<?php echo $gallerypath; ?>" class="caption center-block">
                                                     <strong><?php echo $entry->title; ?></strong>
                                                 </a>
-                                                <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,8000); ?>">
+                                                <div class="carousel owl-carousel" data-interval="<?php echo rand(4000,8000); ?>" data-autoheight="false">
                                                     <?php
                                                     $pictures = $entry->previews;
                                                     foreach($pictures as $pic) { 
@@ -38,8 +38,11 @@
                                             </div>
                                         </div>
                                     <?php 
-                                    if(++$i%2 == 0) {
+                                    ++$i;
+                                    if($i%2 == 0) {
                                         echo "<div class='visible-xs clearfix '></div>";
+                                    } elseif($i%3 == 0) {
+                                        echo "<div class='hidden-xs clearfix '></div>";
                                     }
                                     } ?>
                                 </div>
