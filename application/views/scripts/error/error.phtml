@@ -1,21 +1,26 @@
-
-  <h1>An error occurred</h1>
-  <h2><?php echo $this->message ?></h2>
-
-  <?php if (isset($this->exception)): ?>
-  
-  <h3>Exception information:</h3>
-  <p>
-      <b>Message:</b> <?php echo $this->exception->getMessage() ?>
-  </p>
-
-  <h3>Stack trace:</h3>
-  <pre><?php echo $this->exception->getTraceAsString() ?>
-  </pre>
-
-  <h3>Request Parameters:</h3>
-  <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
-  </pre>
-
-  <?php endif ?>
-
+<div class="row">
+    <div class="col-lg-9 col-md-9">
+            <div class="row">
+                <div class="col-lg-9 col-md-9">
+                    <article class="thisbox">
+                        <div class="head">
+                            <span>Es ist ein Fehler aufgetreten</span>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-9">
+                                    <p class="text-muted">
+                                        So wie Einhörner existiert auch diese Seite nicht...oder zumindest nicht mehr!
+                                        Aber so wie sie, ist es Magie und die kann dich hintragen wohin du willst!
+                                    </p>
+                                    <p>
+                                    <img class="center-block img-thumbnail img-responsive" src="/img/404.jpg" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+    </div>
+</div>
