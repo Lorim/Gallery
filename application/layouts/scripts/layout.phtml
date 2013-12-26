@@ -99,9 +99,8 @@ $this->headScript()->appendFile( $this->baseUrl('/js/site.js'));
                         <script>
                         $.preload( 
                                 <?php
-                                foreach($this->layout()->aPreload as $sPic) {
-                                    echo "'",$sPic,"',";
-                                }
+                                $sString = implode("','", $this->layout()->aPreload);
+                                echo "'".$sString."'";
                                 ?>
                           );
                         </script>
