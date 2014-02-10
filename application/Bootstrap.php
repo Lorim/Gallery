@@ -55,6 +55,15 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
                 )
         );
         $router->addRoute(
+                'newsview', new Zend_Controller_Router_Route(
+                'news/page/:page', array(
+            'controller' => 'index',
+            'action' => 'news',
+            'page' => ''
+                ), array('page' => '\d+')
+                )
+        );
+        $router->addRoute(
                 'kontakt', new Zend_Controller_Router_Route(
                 'kontakt/', array(
             'controller' => 'index',

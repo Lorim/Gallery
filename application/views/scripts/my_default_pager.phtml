@@ -5,13 +5,13 @@ if ($this->pageCount)
 	<ul class="pager">
 	<?php 
 	if($this->current != $this->first) {
-		printf("<li class='next'><a href='%s'>%s &rarr;</a></li>",$this->url(array('page' => $this->previous), 'default', false), "Neuer");
+		printf("<li class='next'><a href='%s'>%s &rarr;</a></li>",$this->url(array('page' => $this->previous), 'newsview', true), "Neuer");
 	}else{
 		printf("<li class='next disabled'><a href='#'>%s &rarr;</a></li>", "Neuer");
 	}
 	
 	if($this->current != $this->last) {
-		printf("<li class='previous'><a href='%s'>&larr; %s</a></li>",$this->url(array('page' => $this->next), 'default', false), "Älter");
+		printf("<li class='previous'><a href='%s'>&larr; %s</a></li>",$this->url(array('page' => $this->next), 'newsview', true), "Älter");
 	} else {
 		printf("<li class='previous disabled'><a href='#'>&larr; %s</a></li>", "Älter");
 	}
