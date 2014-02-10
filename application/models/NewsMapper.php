@@ -31,6 +31,7 @@ class Application_Model_NewsMapper {
             'path' => $news->getPath(),
             'active' => $news->getActive()
         );
+        
         if (null === ($id = $news->getId())) {
             unset($data['id']);
             try {
