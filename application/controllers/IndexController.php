@@ -15,12 +15,14 @@ class IndexController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
-        $oNews = new Application_Model_NewsMapper();
         
-        $oNewsEntry = $oNews->find(0, new Application_Model_News());
-        $this->view->news = $oNewsEntry;
+        $oGallery = new Application_Model_GalleryMapper();
+        $aGallery = $oGallery->findGalleries('Startseite');
+        $this->view->entry = false;
+        if(count($aGallery)) {
+            $this->view->entry = $aGallery[0];
+        }
         $layout = $this->_helper->layout();
-        $layout->teaser = $oNewsEntry->getTeaser();
     }
     
     public function newsAction() {
@@ -95,6 +97,14 @@ class IndexController extends Zend_Controller_Action {
             $this->_helper->layout()->ogPictures = $aPictures;
         } else {
             $this->view->entry = $oGallery->findGalleries($sGalleryTag);
+            $galleries = $oGallery->findGalleries($sGalleryTag);
+            
+            if(count($galleries) == 1) {
+                $this->_helper->viewRenderer->setRender('galleryid');
+                $this->view->entry = $galleries[0];
+            } else {
+                $this->view->entry = $galleries;
+            }
         }
     }
 

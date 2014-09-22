@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configdata>
 	<nav>
-		<news>
-			<label>News</label>
-			<controller>index</controller>
-                        <route>news</route>
-			<action>news</action>
-			<resource>index</resource>
-			<privilege>news</privilege>
-		</news>
-                <gallery>
-			<label>Gallery</label>
-			<controller></controller>
-                        <route>default</route>
-			<resource>index</resource>
-			<privilege>gallery</privilege>
-			<pages>
                             <Portrait>
                                     <label>Portrait</label>
                                     <controller>index</controller>
@@ -27,30 +12,17 @@
                                     <resource>index</resource>
                                     <privilege>gallery</privilege>
                             </Portrait>
-                            <Themen>
-                                    <label>Themen</label>
-                                    <controller>index</controller>
-                                    <route>gallery</route>
-                                    <action>gallery</action>
-                                    <params>
-                                        <tag>Themen</tag>
-                                    </params>
-                                    <resource>index</resource>
-                                    <privilege>gallery</privilege>
-                            </Themen>
                             <Landscape>
-                                    <label>Konzerte - Places - Rockabilly</label>
+                                    <label>Konzerte</label>
                                     <controller>index</controller>
                                     <route>gallery</route>
                                     <action>gallery</action>
                                     <params>
-                                        <tag>Diverses</tag>
+                                        <tag>Konzerte</tag>
                                     </params>
                                     <resource>index</resource>
                                     <privilege>gallery</privilege>
                             </Landscape>
-                        </pages>
-                </gallery>
 		<kontakt>
 			<label>Kontakt</label>
 			<controller>index</controller>
